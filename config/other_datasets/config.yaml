@@ -1,0 +1,5 @@
+defaults:
+  - dataset: ~
+  - _self_
+
+task_name: "other_datasets"

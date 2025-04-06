@@ -1,0 +1,171 @@
+defaults:
+  - dataset: ~
+  - _self_
+
+task_name: "text2signal"
+exp_name: ~
+
+
+
+###############
+# preprocessing
+###############
+
+limit_instances: 15
+
+##################
+# prepare requests
+##################
+
+mode: "few shot" # can be "one shot", "few shot", "RAG", few_and_docu or "zero shot"
+
+
+limit_example_columns: 20  # null means don't limit
+
+linearize_table:
+  template: "table name: {{table_name}}{{newline}}{{table}}"  # can include {{newline}}, {{table_name}}, and {{table}}
+  mode: "csv"
+  csv_params:
+    index: false
+    header: true
+  matrix_params:
+    major: "row"
+    header: true
+    template: "The table is serialized in a {{major}} way:{{newline}}{{newline}}{{matrix}}"  # can include {{newline}}, {{major}}, and {{matrix}}
+
+linearize_list:
+  mode: "json_list"
+
+parse_list:
+  mode: "json_list"
+  json_params:
+    strip: false
+    strict: false
+
+rag_file: "str_no_detailed_functions_35K.txt"
+
+prompt_chat_template:
+  - role: "system"
+    content: |-
+      You are a SIGNAL assistant which translates textual descriptions into SIGNAL queries. SIGNAL stands for Signavio Analytics Language and is a domain-specific query language for SAP Signavio's Process Intelligence Suite.
+      Your task is to construct a SIGNAL query that returns precisely the information asked for in the given textual description.
+      
+      Follow these rules:
+      Put all variables and parameters in parentheses in your response.
+      Make sure to state only the signal query and no additional explaining text.
+      Do not reference THIS_PROCESS, but instead replace it with the actual data source table name. Never ever generate THIS_PROCESS in your response.
+      The names of the actual data source table name must be put in double quotes.
+      Never generate a * (asterisk or star character).
+  - role: "user"
+    content: "{{signal}}"
+
+
+prompt_chat_RAG_template:
+  - role: "system"
+    content: |-
+      You are a SIGNAL assistant which translates textual descriptions into SIGNAL queries. SIGNAL stands for Signavio Analytics Language and is a domain-specific query language for SAP Signavio's Process Intelligence Suite.
+      Your task is to construct a SIGNAL query that returns precisely the information asked for in the given textual description.
+      
+      Follow these rules:
+      Put all variables and parameters in parentheses in your response.
+      Make sure to state only the signal query and no additional explaining text.
+      Do not reference THIS_PROCESS, but instead replace it with the actual data source table name. Never ever generate THIS_PROCESS in your response.
+      The names of the actual data source table name must be put in double quotes.
+      Never generate a * (asterisk or star character).
+      
+      Here is the SIGNAL documentation:
+      {{documentation}}
+  - role: "user"
+    content: "{{signal}}"
+
+prompt_chat_oneshot_template:
+  - role: "system"
+    content: |-
+      You are a SIGNAL assistant which translates textual descriptions into SIGNAL queries. SIGNAL stands for Signavio Analytics Language and is a domain-specific query language for SAP Signavio's Process Intelligence Suite.
+      Your task is to construct a SIGNAL query that returns precisely the information asked for in the given textual description.
+      
+      Follow these rules:
+      Put all variables and parameters in parentheses in your response.
+      Make sure to state only the signal query and no additional explaining text.
+      Do not reference THIS_PROCESS, but instead replace it with the actual data source table name. Never ever generate THIS_PROCESS in your response.
+      The names of the actual data source table name must be put in double quotes.
+      Never generate a * (asterisk or star character).
+      
+      Here is an example SIGNAL query:
+      SELECT AVG ((SELECT FIRST (END_TIME) FILTER (WHERE EVENT_NAME LIKE 'Complete%' AND "Routing Step" = '0010')) - (SELECT FIRST (END_TIME) FILTER (WHERE EVENT_NAME LIKE 'Start%' AND "Routing Step" = '0010'))) FROM "2c30aebe-08ac-4606-934e-9d4946edfc8a"
+  - role: "user"
+    content: "{{signal}}"
+
+prompt_chat_fewshot_template:
+  - role: "system"
+    content: |-
+      You are a SIGNAL assistant which translates textual descriptions into SIGNAL queries. SIGNAL stands for Signavio Analytics Language and is a domain-specific query language for SAP Signavio's Process Intelligence Suite.
+      Your task is to construct a SIGNAL query that returns precisely the information asked for in the given textual description.
+      
+      Follow these rules:
+      Put all variables and parameters in parentheses in your response.
+      Make sure to state only the signal query and no additional explaining text.
+      Do not reference THIS_PROCESS, but instead replace it with the actual data source table name. Never ever generate THIS_PROCESS in your response.
+      The names of the actual data source table name must be put in double quotes.
+      Never generate a * (asterisk or star character).
+      
+      Here are some example SIGNAL queries:
+      SELECT AVG ((SELECT FIRST (END_TIME) FILTER (WHERE EVENT_NAME LIKE 'Complete%' AND "Routing Step" = '0010')) - (SELECT FIRST (END_TIME) FILTER (WHERE EVENT_NAME LIKE 'Start%' AND "Routing Step" = '0010'))) FROM "2c30aebe-08ac-4606-934e-9d4946edfc8a"
+      SELECT COUNT(case_id) FILTER (WHERE ("Last Inv. Item Clearing Date" IS NULL) AND "Last Inv. Item Due Date" < DATE_TRUNC('day', NOW())) FROM "defaultview-225"
+      SELECT COUNT(event_name) AS "# Created Process Orders", (COUNT (EVENT_NAME) FILTER (WHERE "Event Created By User Type" NOT IN ('Dialog'))) / (COUNT (EVENT_NAME)) * 100 AS "Automation Rate", "Division" FROM FLATTEN("defaultview-183") WHERE "Planned Order Number" IS NULL AND EVENT_NAME = 'Create Process Order' ORDER BY 1 desc LIMIT 10
+  - role: "user"
+    content: "{{signal}}"
+
+prompt_chat_fewshot_doc_template:
+  - role: "system"
+    content: |-
+      You are a SIGNAL assistant which translates textual descriptions into SIGNAL queries. SIGNAL stands for Signavio Analytics Language and is a domain-specific query language for SAP Signavio's Process Intelligence Suite.
+      Your task is to construct a SIGNAL query that returns precisely the information asked for in the given textual description.
+      
+      Follow these rules:
+      Put all variables and parameters in parentheses in your response.
+      Make sure to state only the signal query and no additional explaining text.
+      Do not reference THIS_PROCESS, but instead replace it with the actual data source table name. Never ever generate THIS_PROCESS in your response.
+      The names of the actual data source table name must be put in double quotes.
+      Never generate a * (asterisk or star character).
+      
+      Here is the SIGNAL documentation:
+      {{documentation}}
+      
+      Here are some example SIGNAL queries:
+      SELECT AVG ((SELECT FIRST (END_TIME) FILTER (WHERE EVENT_NAME LIKE 'Complete%' AND "Routing Step" = '0010')) - (SELECT FIRST (END_TIME) FILTER (WHERE EVENT_NAME LIKE 'Start%' AND "Routing Step" = '0010'))) FROM "2c30aebe-08ac-4606-934e-9d4946edfc8a"
+      SELECT COUNT(case_id) FILTER (WHERE ("Last Inv. Item Clearing Date" IS NULL) AND "Last Inv. Item Due Date" < DATE_TRUNC('day', NOW())) FROM "defaultview-225"
+      SELECT COUNT(event_name) AS "# Created Process Orders", (COUNT (EVENT_NAME) FILTER (WHERE "Event Created By User Type" NOT IN ('Dialog'))) / (COUNT (EVENT_NAME)) * 100 AS "Automation Rate", "Division" FROM FLATTEN("defaultview-183") WHERE "Planned Order Number" IS NULL AND EVENT_NAME = 'Create Process Order' ORDER BY 1 desc LIMIT 10
+  - role: "user"
+    content: "{{signal}}"
+
+# template can include {{table}} {{column_types}} {{column_type}} {{lookup}}
+example_chat_template:
+  - role: "user"
+    content: "{{table}}"
+  - role: "assistant"
+    content: "{{column_types}}"
+
+sample_rows:
+  num_rows: 3
+  mode: "random"
+
+sample_examples:
+  num_examples: 1
+
+max_tokens_over_ground_truth: null  # null means max_tokens will be set to null
+model: ~
+temperature: 0
+
+##################
+# execute requests
+##################
+
+api_name: ~
+
+
+############
+# evaluation
+############
+
+bucketize_sparsity_decimal_points: 1

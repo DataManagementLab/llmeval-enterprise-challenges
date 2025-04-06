@@ -1,0 +1,32 @@
+prompt_chat_template_steps:
+  - role: "user"
+    content: |-
+      Imagine that you need to merge customer data from two different companies into a unified format.
+      Company A has acquired Company B and wants to integrate Company B's customer database into its customer table.
+      Each company has its own customer data stored in company specific formats, some customers may only exist in one company, some in both.
+      Please perform the following steps:
+      1) Schema Matching: Find out which information from Company B needs to be integrated into which parts of Company A's schema.
+      2) Entity Matching: Detect duplicates between the databases of the two companies to find out which customers are present in both.
+      3) Data Integration & Transformation: Integrate all the data into the schema from Company A. Do not add additional columns to Company A's schema. Merge all the duplicates found and transform the data where necessary. Please keep the customer ID set in Company A. If a customer did not exist in Company A before, please add it and set the customer number to "xxx". 
+      Return only the resulting output table from Company A after the integration in csv format with ; as the delimiter.
+      Your output must be parsable by pandas. Do not truncate the output table but make sure to merge all duplicate rows. Do not give explanations.
+
+  - role: "user"
+    content: "Company A customer table: {{company_A_table}} Company B customer database: {{company_B_info_table}} {{company_B_contact_table}}"
+
+prompt_chat_template_text:
+  - role: "user"
+    content: |-
+      Imagine that you need to merge customer data from two different companies into a unified format.
+      Company A has acquired Company B and wants to integrate Company B's customer database into its customer table.
+      Each company has its own customer data stored in company specific formats, some customers may only exist in one company, some in both.
+      Please merge the Company B's database (two related tables) into Company A's customer table. 
+      If a customer did not exist in Company A before, please add it and set the customer number to "xxx". Do not add additional columns to Company A's schema. 
+      In addition, please detect duplicates and merge them into a single row, in which case please keep the customer ID set in Company A. 
+      Return only the resulting output table from Company A after the integration in csv format with ; as the delimiter.
+      Your output must be parsable by pandas. Do not give explanations.
+
+  - role: "user"
+    content: "Company A customer table: {{company_A_table}} Company B customer database: {{company_B_info_table}} {{company_B_contact_table}}"
+
+

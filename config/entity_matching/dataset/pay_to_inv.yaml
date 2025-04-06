@@ -1,0 +1,781 @@
+dataset_name: "pay_to_inv"
+
+# dataset-specific configuration goes here
+
+schema_mode: "descriptive"  # "descriptive" or "opaque" or "multi-table"
+
+perturbation_mode: "single"  # "single" or "multi"
+perturbation_probability: 0.75
+
+num_matches: 10000
+
+match_categories:
+  one_pay_one_inv:
+    weight: 0.6
+
+  # quarter-wise payments, down payments, ...
+  multi_pay_one_inv:
+    weight: 0.2
+    gen:
+      max_num_payments: 5
+      num_payments_alpha: 1
+      num_payments_beta: 5
+
+  # payment advices
+  one_pay_multi_inv:
+    weight: 0.2
+    gen:
+      max_num_invoices: 10  # some payment advices have multiple pages of items
+      num_invoices_alpha: 2
+      num_invoices_beta: 5
+
+
+perturbation_categories:
+  # people sometimes deduct small amounts or make mistakes
+  small_deduction:
+    weight: 0.25
+    gen:
+      deduction_alpha: 3
+      deduction_beta: 5
+      max_deduction_usd: 0.1
+      max_deduction_frac: 0.1
+
+  perturbed_business_partner:
+    weight: 0.25
+
+  perturbed_billing_number:
+    weight: 0.25
+
+  perturbed_assignment_number:
+    weight: 0.25
+
+
+inv_attributes: # order is order in final dataset
+  inv_client:
+    descriptive_name: "Client"
+    opaque_name: "MANDT"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BKPF"
+        - "BSEG"
+        - "KNA-1"
+      is_primary_key_for:
+        - "BKPF"
+        - "BSEG"
+        - "KNA-1"
+
+  inv_company_code:
+    descriptive_name: "Company Code"
+    opaque_name: "BURKS"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BKPF"
+        - "BSEG"
+      is_primary_key_for:
+        - "BKPF"
+        - "BSEG"
+    gen:
+      value_exp_drop_denom: 2
+
+  inv_fiscal_year:
+    descriptive_name: "Fiscal Year"
+    opaque_name: "GJAHR"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BKPF"
+        - "BSEG"
+      is_primary_key_for:
+        - "BKPF"
+        - "BSEG"
+    gen:
+      min_year: 2000
+      max_year: 2024
+
+  inv_document_number:
+    descriptive_name: "Document Number"
+    opaque_name: "BELNR"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BKPF"
+        - "BSEG"
+      is_primary_key_for:
+        - "BKPF"
+        - "BSEG"
+
+  inv_line_item_number:
+    descriptive_name: "Line Item Number"
+    opaque_name: "BZUEI"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BSEG"
+      is_primary_key_for:
+        -
+    gen:
+      value_exp_drop_denom: 10
+
+  inv_assignment_number:
+    descriptive_name: "Assignment Number"
+    opaque_name: "ZUONR"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BSEG"
+      is_primary_key_for:
+        -
+
+  inv_billing_number:
+    descriptive_name: "Billing Number"
+    opaque_name: "VBELN"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BSEG"
+      is_primary_key_for:
+        -
+    gen:
+      not_from_assignment_number: 0.2
+
+  inv_customer_id:
+    descriptive_name: "Customer ID"
+    opaque_name: "KUNNR"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BSEG"
+        - "KNA-1"
+      is_primary_key_for:
+        - "KNA-1"
+    gen:
+      num_customers: 50
+
+  inv_customer_name:
+    descriptive_name: "Customer Name"
+    opaque_name: "NAME1"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "KNA-1"
+      is_primary_key_for:
+        -
+    gen:
+      mode: "chatgpt"
+      chatgpt_companies:
+        - name: Acme Corporation
+          bank_statement: ACME PARTNERS
+        - name: Global Solutions Ltd
+          bank_statement: GSOLUTIONS INC
+        - name: Tech Innovators Inc.
+          bank_statement: INNOV TECH
+        - name: Sunshine Retailers LLC
+          bank_statement: SUNRAY MERCH
+        - name: NorthStar Enterprises
+          bank_statement: N-STAR ENT.
+        - name: Smith & Co. Consulting
+          bank_statement: SC CONSULTING GROUP
+        - name: Quantum Software Solutions
+          bank_statement: QSOFT SYSTEMS
+        - name: Urban Ventures Limited
+          bank_statement: U-VEN HOLDINGS
+        - name: PineTree Logistics
+          bank_statement: PINETREE DISTRIB
+        - name: EcoWorld Organics
+          bank_statement: ECO ORG PRODUCTS
+        - name: BlueWave Technologies
+          bank_statement: BWT INC.
+        - name: Eagle Financial Group
+          bank_statement: EAGLE PAYMENTS
+        - name: Vista Health Care Services
+          bank_statement: VISTA CARE NETWORK
+        - name: Oceanic Travel Agency
+          bank_statement: OCEANIC VACATIONS
+        - name: Golden Key Realty
+          bank_statement: GK PROPERTY MGMT
+        - name: Alpha Construction Co.
+          bank_statement: ALCON BUILDERS
+        - name: Green Energy Solutions
+          bank_statement: GE SOLAR CORP
+        - name: Rapid Response Couriers
+          bank_statement: RRC EXPRESS LLC
+        - name: Metropolitan Media Group
+          bank_statement: METROMEDIA PRODUCTIONS
+        - name: Galaxy IT Services
+          bank_statement: GXS TECH
+        - name: Horizon Security Systems
+          bank_statement: HORIZON PROTECTION
+        - name: FreshFarm Foods Co.
+          bank_statement: FARM FRESH LLC
+        - name: Innovo Biotech Ltd
+          bank_statement: INNOBIO PHARMA
+        - name: Neptune Maritime Logistics
+          bank_statement: NML SHIPPING
+        - name: Diamond Luxury Hotels
+          bank_statement: DLH SUITES
+        - name: Red Maple Ventures
+          bank_statement: RMV CAPITAL
+        - name: Silverspeed Transport
+          bank_statement: SST LOGISTICS
+        - name: Axis Legal Advisors LLP
+          bank_statement: ALA LAW
+        - name: Bella Flora Gardens
+          bank_statement: BFG HORTICULTURE
+        - name: Zenith Pharmaceuticals
+          bank_statement: ZP MEDICALS
+        - name: Highline Aerospace
+          bank_statement: HLA AVIATION
+        - name: Fairview Insurance Brokers
+          bank_statement: FIB INSURANCE
+        - name: Velocity Fitness Centers
+          bank_statement: VFC GYMS
+        - name: Alpine Data Solutions
+          bank_statement: ADS TECH
+        - name: Cielo Azul Construction
+          bank_statement: CAC BUILDERS
+        - name: Futura Digital Media
+          bank_statement: FDM AGENCY
+        - name: Omega Electronics
+          bank_statement: OE TECH
+        - name: Crimson Event Management
+          bank_statement: CEM PLANNERS
+        - name: Argon Mining Ltd
+          bank_statement: AML RESOURCES
+        - name: Apollo Catering Services
+          bank_statement: ACS HOSPITALITY
+        - name: Titan Security & Patrol
+          bank_statement: TSP GUARDS
+        - name: Emerald City Brewing Co.
+          bank_statement: ECB BEVERAGES
+        - name: Lumen Power Technologies
+          bank_statement: LPT ENERGY
+        - name: Shoreline Property Group
+          bank_statement: SPG REALTY
+        - name: Nexus Financial Services
+          bank_statement: NFS ADVISORS
+        - name: AeroMax Manufacturing
+          bank_statement: AMX INDUSTRIES
+        - name: Blue Horizon Travel Ltd
+          bank_statement: BHT TOURS
+        - name: Starfield Entertainment
+          bank_statement: SFE PRODUCTIONS
+        - name: Aurora Digital Labs
+          bank_statement: ADL TECH
+        - name: TerraNova Energy Co.
+          bank_statement: TNE RESOURCES
+        - name: Silverline Consulting Group
+          bank_statement: SCG ADVISORS
+        - name: OpalStone Mining Inc.
+          bank_statement: OSM RESOURCES
+        - name: Pacific Ocean Fisheries
+          bank_statement: POF SEAFOOD
+        - name: Summit Peak Investments
+          bank_statement: SPI CAPITAL
+        - name: Stellar Aviation Ltd
+          bank_statement: SAL AIRWAYS
+        - name: Alpine Mountain Resorts
+          bank_statement: AMR LODGES
+        - name: Coral Reef Aquatics
+          bank_statement: CRA MARINE
+        - name: Fusion Data Analytics
+          bank_statement: FDA INSIGHTS
+        - name: Infinity Edge Technologies
+          bank_statement: IET SOLUTIONS
+        - name: Sapphire Legal Consulting
+          bank_statement: SLC LAW
+        - name: Crimson Peak Entertainment
+          bank_statement: CPE MEDIA
+        - name: Vulcan Heavy Industries
+          bank_statement: VHI MANUFACTURING
+        - name: Aurora Skies Airlines
+          bank_statement: ASA FLIGHTS
+        - name: Apex Automotive Solutions
+          bank_statement: AAS MOTORS
+        - name: Kim & Choi Electronics
+          bank_statement: KC Tech Solutions
+        - name: Ivanov & Sons Engineering
+          bank_statement: IS Engineering Group
+        - name: Dubois & Co. S.A.R.L.
+          bank_statement: Dubois Holdings
+        - name: Patel & Sons Pvt. Ltd.
+          bank_statement: P&S Enterprises
+        - name: Nguyen & Brothers Inc.
+          bank_statement: NB Global Services
+        - name: Schmidt & Partners AG
+          bank_statement: SP Consulting
+        - name: Yamada & Co. 有限会社
+          bank_statement: Yamada Partners Ltd.
+        - name: Dupont & Frères SARL
+          bank_statement: DF Solutions
+        - name: Oliveira & Filhos Lda.
+          bank_statement: OF Trading
+        - name: Zhao & Associates Ltd.
+          bank_statement: Z&A Consulting
+        - name: Ferrari & Figli SRL
+          bank_statement: F&F Ventures
+        - name: González & Co. S.L.
+          bank_statement: G&C Services
+        - name: Park & Lee Solutions
+          bank_statement: PL Innovations
+        - name: Weber & Söhne GmbH
+          bank_statement: WS Enterprises
+        - name: Souza & Filhos Comércio
+          bank_statement: SF Trading Co.
+        - name: Koch & Söhne AG
+          bank_statement: KS Holdings
+        - name: Nakagawa & Partners 株式会社
+          bank_statement: NP Corp.
+        - name: Bertolini & Figli S.p.A.
+          bank_statement: BF Holdings
+        - name: Hassan & Co. Ltd.
+          bank_statement: H&Co. Enterprises
+        - name: Jansen & Söhne Handels
+          bank_statement: JS Trading
+        - name: Ramirez & Hijos Servicios
+          bank_statement: RH Services
+        - name: Liu & Chao Engineering
+          bank_statement: LC Engineering
+        - name: Renault & Fils SARL
+          bank_statement: RF Solutions
+        - name: Schmidt & Sons Handels
+          bank_statement: SS Trading
+        - name: Silva & Filhos Lda.
+          bank_statement: SF Enterprises
+        - name: Nakamura & Co. 有限会社
+          bank_statement: NC Ltd.
+        - name: Bianchi & Figli SRL
+          bank_statement: BF Ventures
+        - name: Patel & Co. Pvt. Ltd.
+          bank_statement: P&C Enterprises
+        - name: Müller & Söhne GmbH
+          bank_statement: MS Holdings
+        - name: García & Asociados S.A.
+          bank_statement: GA Consulting
+        - name: Choi & Park Electronics
+          bank_statement: CP Tech
+        - name: Ferrari & Figli Costruzioni
+          bank_statement: F&F Construction
+        - name: Santos & Filho Lda.
+          bank_statement: SF Enterprises
+        - name: Schmidt & Co. Handels
+          bank_statement: SC Trading
+        - name: Kim & Lee Solutions
+          bank_statement: KL Innovations
+        - name: Ivanov & Partners Ltd.
+          bank_statement: IP Consulting
+        - name: Dubois & Frères SARL
+          bank_statement: DF Holdings
+        - name: Oliveira & Filhos Comércio
+          bank_statement: OF Trading
+        - name: Zhao & Sons Ltd.
+          bank_statement: Z&S Enterprises
+        - name: Bertolini & Co. SRL
+          bank_statement: BC Ventures
+        - name: Hassan & Sons Pvt. Ltd.
+          bank_statement: H&S Enterprises
+        - name: Zhang & Associates Ltd.
+          bank_statement: Zhang Consulting Services
+        - name: Dubois & Co. SARL
+          bank_statement: Dubois Financial Group
+        - name: Patel & Brothers Pvt. Ltd.
+          bank_statement: Patel Bros. Holdings
+        - name: Müller & Sohn GmbH
+          bank_statement: Muller & Son Enterprises
+        - name: Rossi & Figli S.p.A.
+          bank_statement: Rossi Family Ventures
+        - name: Santos & Filhos Comércio
+          bank_statement: Santos Trading Co.
+        - name: Tanaka & Co. 株式会社
+          bank_statement: Tanaka Corp.
+        - name: Garcia & Cía S.A.
+          bank_statement: Garcia & Co. Ltd.
+        - name: Kim & Park Electronics
+          bank_statement: KP Electronics
+        - name: Ivanov & Co. Инжиниринг
+          bank_statement: Ivanov Engineering
+        - name: Ferrari & Figli SRL
+          bank_statement: Ferrari Family Holdings
+        - name: Nguyen & Sons Ltd.
+          bank_statement: Nguyen Enterprises
+        - name: Schmidt & Söhne GmbH
+          bank_statement: Schmidt & Sons Ltd.
+        - name: Ramirez & Hijos Consultoría
+          bank_statement: Ramirez Consulting
+        - name: Yamada & Partners 有限会社
+          bank_statement: Yamada Partners Ltd.
+        - name: Dupont & Frères SARL
+          bank_statement: Dupont Brothers
+        - name: Oliveira & Filhos Lda.
+          bank_statement: Oliveira & Sons Trading
+        - name: Zhao & Brothers Ltd.
+          bank_statement: Zhao Bros. Ltd.
+        - name: Bertolini & Figli S.p.A.
+          bank_statement: Bertolini Family Ventures
+        - name: Hassan & Co. Ltd.
+          bank_statement: Hassan Enterprises
+        - name: Jansen & Söhne AG
+          bank_statement: Jansen & Sons Inc.
+        - name: Silva & Filhos Comércio
+          bank_statement: Silva Trading Co.
+        - name: Nakamura & Co. 株式会社
+          bank_statement: Nakamura Corp.
+        - name: Bianchi & Figli SRL
+          bank_statement: Bianchi Family Holdings
+        - name: Patel & Sons Pvt. Ltd.
+          bank_statement: Patel & Sons Enterprises
+        - name: Müller & Söhne AG
+          bank_statement: Muller & Sons Inc.
+        - name: García & Asociados S.A.
+          bank_statement: Garcia & Associates Ltd.
+        - name: Choi & Park Solutions
+          bank_statement: CP Solutions
+        - name: Ferrari & Figli Costruzioni
+          bank_statement: Ferrari Construction
+        - name: Santos & Filho Comércio
+          bank_statement: Santos Trading Co.
+        - name: Schmidt & Co. Handels
+          bank_statement: Schmidt Trading
+        - name: Kim & Lee Technologies
+          bank_statement: KL Technologies
+        - name: Dubois & Frères SARL
+          bank_statement: "DF_SARL_67890"
+        - name: Oliveira & Filhos Comércio
+          bank_statement: "OFC_11223"
+        - name: Zhao & Sons Ltd.
+          bank_statement: "ZS_Ltd_44556"
+        - name: Bertolini & Co. SRL
+          bank_statement: "BC_SRL_77889"
+        - name: Hassan & Sons Pvt. Ltd.
+          bank_statement: "HS_Pvt_99001"
+        - name: Schmidt & Partners AG
+          bank_statement: "SP_AG_22334"
+        - name: Nakamura & Co. 有限会社
+          bank_statement: "NC_YK_55667"
+        - name: Rossi & Figli Costruzioni
+          bank_statement: "RFC_88990"
+        - name: Zhang & Co. Limited
+          bank_statement: "ZC_Ltd_11212"
+        - name: Santos & Filho Comércio
+          bank_statement: "SFC_33445"
+        - name: Patel & Co. Pvt. Ltd.
+          bank_statement: "PC_Pvt_66778"
+        - name: Müller & Co. GmbH
+          bank_statement: "MC_GmbH_99002"
+        - name: Kim & Choi Electronics
+          bank_statement: "KCE_22335"
+        - name: Rossi & Figli SRL
+          bank_statement: "RF_SRL_55668"
+        - name: Tanaka & Co. 株式会社
+          bank_statement: "TC_KK_88991"
+        - name: Garcia & Cía S.A.
+          bank_statement: "GC_SA_11213"
+        - name: Ivanov & Sons Ltd.
+          bank_statement: "IS_Ltd_33446"
+  inv_currency_code:
+    descriptive_name: "Currency Code"
+    opaque_name: "WAERS"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BKPF"
+      is_primary_key_for:
+        -
+    gen:
+      currency_codes: # based on https://en.wikipedia.org/wiki/Template:Most_traded_currencies
+        USD: 89
+        EUR: 31
+        JPY: 17
+        GBP: 13
+        CNY: 7
+        AUD: 6
+        CAD: 6
+        CHF: 5
+        HKD: 3
+        SGD: 2
+        SEK: 2
+        KRW: 2
+        NOK: 2
+        NZD: 2
+        INR: 2
+
+  inv_country_key:
+    descriptive_name: "Country Key"
+    opaque_name: "LAND1"
+    single_table:
+      include_in_view: false
+    multi_table:
+      table_names:
+        - "KNA-1"
+      is_primary_key_for:
+        -
+    gen:
+      AUD:
+        - country_code: AU
+          country_name: Australia
+        - country_code: NZ
+          country_name: New Zealand
+      CAD:
+        - country_code: CA
+          country_name: Canada
+      CHF:
+        - country_code: CH
+          country_name: Switzerland
+        - country_code: LI
+          country_name: Liechtenstein
+      CNY:
+        - country_code: CN
+          country_name: China
+      EUR:
+        - country_code: EU
+          country_name: Eurozone
+        - country_code: DE
+          country_name: Germany
+        - country_code: FR
+          country_name: France
+        - country_code: IT
+          country_name: Italy
+        - country_code: ES
+          country_name: Spain
+        - country_code: IE
+          country_name: Ireland
+        - country_code: PT
+          country_name: Portugal
+        - country_code: GR
+          country_name: Greece
+      GBP:
+        - country_code: GB
+          country_name: United Kingdom
+        - country_code: GI
+          country_name: Gibraltar
+        - country_code: JE
+          country_name: Jersey
+        - country_code: GG
+          country_name: Guernsey
+      INR:
+        - country_code: IN
+          country_name: India
+        - country_code: NP
+          country_name: Nepal
+      JPY:
+        - country_code: JP
+          country_name: Japan
+      KRW:
+        - country_code: KR
+          country_name: South Korea
+      NOK:
+        - country_code: "NO"
+          country_name: Norway
+      PHP:
+        - country_code: PH
+          country_name: Philippines
+      PLN:
+        - country_code: PL
+          country_name: Poland
+      QAR:
+        - country_code: QA
+          country_name: Qatar
+      RUB:
+        - country_code: RU
+          country_name: Russia
+      SAR:
+        - country_code: SA
+          country_name: Saudi Arabia
+      SCR:
+        - country_code: SC
+          country_name: Seychelles
+      SEK:
+        - country_code: SE
+          country_name: Sweden
+      SGD:
+        - country_code: SG
+          country_name: Singapore
+      THB:
+        - country_code: TH
+          country_name: Thailand
+      TND:
+        - country_code: TN
+          country_name: Tunisia
+      TZS:
+        - country_code: TZ
+          country_name: Tanzania
+      UGX:
+        - country_code: UG
+          country_name: Uganda
+      USD:
+        - country_code: US
+          country_name: United States
+        - country_code: EC
+          country_name: Ecuador
+        - country_code: SV
+          country_name: El Salvador
+        - country_code: PA
+          country_name: Panama
+        - country_code: ZW
+          country_name: Zimbabwe
+      YER:
+        - country_code: YE
+          country_name: Yemen
+      ZAR:
+        - country_code: ZA
+          country_name: South Africa
+      HKD:
+        - country_code: HK
+          country_name: Hong Kong
+      NZD:
+        - country_code: NZ
+          country_name: New Zealand
+
+  inv_amount:
+    descriptive_name: "Amount"
+    opaque_name: "WRBTR"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BSEG"
+      is_primary_key_for:
+        -
+    gen:
+      max_amount: 1000000
+      amount_alpha: 2
+      amount_beta: 10
+      usd_to_currency:
+        USD: 1
+        EUR: 0.9076
+        JPY: 142.4026
+        GBP: 0.7654
+        CNY: 7.1187
+        AUD: 1.5023
+        CAD: 1.3590
+        CHF: 0.8509
+        HKD: 7.7991
+        SGD: 1.3044
+        SEK: 10.3828
+        KRW: 1341.483
+        NOK: 10.8456
+        NZD: 1.6309
+        INR: 83.9760
+
+  inv_document_date:
+    descriptive_name: "Document Date"
+    opaque_name: "BLDAT"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BKPF"
+      is_primary_key_for:
+        -
+
+  inv_due_date:
+    descriptive_name: "Due Date"
+    opaque_name: "ZFBDT"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "BSEG"
+      is_primary_key_for:
+        -
+    gen:
+          days_since_alpha: 2
+          days_since_beta: 5
+          max_days_since: 60
+  
+  inv_terms_of_payment:
+    descriptive_name: "Terms of Payment"
+    opaque_name: "ZTERM"
+    single_table:
+      include_in_view: false
+    multi_table:
+      table_names:
+        - "BSEG"
+      is_primary_key_for:
+        -
+    gen:
+      max_terms_of_payment: 30
+
+
+pay_attributes: # order is order in final dataset
+  pay_business_partner:
+    descriptive_name: "Business Partner"
+    opaque_name: "PARTN"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "FEBEP"
+      is_primary_key_for:
+        - "FEBEP"
+
+  pay_account_number:
+    descriptive_name: "Account Number"
+    opaque_name: "AVKON"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "FEBEP"
+      is_primary_key_for:
+        - "FEBEP"
+
+  pay_memo_line:
+    descriptive_name: "Memo Line"
+    opaque_name: "SGTXT"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "FEBEP"
+      is_primary_key_for:
+        - "FEBEP"
+  
+  pay_amount:
+    descriptive_name: "Amount"
+    opaque_name: "KWBTR"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "FEBEP"
+      is_primary_key_for:
+        - "FEBEP"
+  
+  pay_currency:
+    descriptive_name: "Currency"
+    opaque_name: "KWAER"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "FEBEP"
+      is_primary_key_for:
+        - "FEBEP"
+  
+  pay_posting_date:
+    descriptive_name: "Posting Date"
+    opaque_name: "BVDAT"
+    single_table:
+      include_in_view: true
+    multi_table:
+      table_names:
+        - "FEBEP"
+      is_primary_key_for:
+        - "FEBEP"
+    gen:
+      days_since_alpha: 2
+      days_since_beta: 5
+      max_days_since: 60
+  

@@ -1,0 +1,19 @@
+dataset_name: "imdb"
+
+# dataset-specific configuration goes here
+
+files_and_urls:
+  - file_name: "name_basics.tsv"
+    url: "https://datasets.imdbws.com/name.basics.tsv.gz"
+  - file_name: "title_akas.tsv"
+    url: "https://datasets.imdbws.com/title.akas.tsv.gz"
+  - file_name: "title_basics.tsv"
+    url: "https://datasets.imdbws.com/title.basics.tsv.gz"
+  - file_name: "title_crew.tsv"
+    url: "https://datasets.imdbws.com/title.crew.tsv.gz"
+  - file_name: "title_episodes.tsv"
+    url: "https://datasets.imdbws.com/title.episode.tsv.gz"
+  - file_name: "title_principals.tsv"
+    url: "https://datasets.imdbws.com/title.principals.tsv.gz"
+  - file_name: "title_ratings.tsv"
+    url: "https://datasets.imdbws.com/title.ratings.tsv.gz"

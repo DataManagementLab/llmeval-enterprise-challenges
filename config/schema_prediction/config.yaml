@@ -1,0 +1,86 @@
+defaults:
+  - dataset: ~
+  - _self_
+
+task_name: "schema_prediction"
+exp_name: ~
+
+# task-specific configuration goes here
+
+task_mode: "all"  # "all" or "lookup-index" or "lookup-header"
+
+###############
+# preprocessing
+###############
+
+limit_instances: null
+
+##################
+# prepare requests
+##################
+
+use_inst_all_column_types: false
+num_inst_all_column_types: 500
+
+remove_unspecified_columns_in_example: true
+unspecified_column_type_string: "unspecified"
+
+limit_example_columns: 20  # null means don't limit
+
+linearize_table:
+  template: "table name: {{table_name}}{{newline}}{{table}}"  # can include {{newline}}, {{table_name}}, and {{table}}
+  mode: "csv"
+  csv_params:
+    index: false
+    header: true
+  matrix_params:
+    major: "row"
+    header: true
+    template: "The table is serialized in a {{major}} way:{{newline}}{{newline}}{{matrix}}"  # can include {{newline}}, {{major}}, and {{matrix}}
+
+linearize_list:
+  mode: "json_list"
+
+parse_list:
+  mode: "json_list"
+  json_params:
+    strip: false
+    strict: false
+
+# template can include {{all_column_types}} {{examples}} {{table}} {{lookup}}
+prompt_chat_template:
+  - role: "user"
+    content: |-
+      Tell me all column names of the following SAP table. Provide just the column names as a JSON list without any introduction or explanation.
+      SAP Table name is: {{table}}
+
+# template can include {{table}} {{column_types}} {{column_type}} {{lookup}}
+example_chat_template:
+  - role: "user"
+    content: "{{table}}"
+  - role: "assistant"
+    content: "{{column_types}}"
+
+sample_rows:
+  num_rows: 3
+  mode: "random"
+
+sample_examples:
+  num_examples: 1
+
+max_tokens_over_ground_truth: 100  # null means max_tokens will be set to null
+model: ~
+temperature: 0
+
+##################
+# execute requests
+##################
+
+api_name: ~
+
+
+############
+# evaluation
+############
+
+bucketize_sparsity_decimal_points: 1

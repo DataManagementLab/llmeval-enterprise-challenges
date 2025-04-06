@@ -1,0 +1,2173 @@
+dataset_name: "customer_integration"
+
+#########################################################
+##       Dataset creation: parameters  
+#########################################################
+
+total_num_customers: 150
+split_step_size: 25
+
+percentages:
+  matches: 0.6 # overlap as the percentage of the total number of customers that are present in both companies
+  discrepancies: 0.8 # will an overlapping customer have discrepancies between the companies?, 0=never, 1=always
+  customer_id_reoccurs: 0.2 # Company A and B have distributed a same ID, 0=never, 1=always
+  alter_attribute: 0.2 # will an attribute (phone number, mail, address, ...) be altered?
+
+num_creation_user_names: 10 # number of users per company
+
+#########################################################
+##       Dataset creation: schema information
+#########################################################
+
+company_A_attributes: # KNA-1 table
+  attr_client:
+    name: "MANDT" # client x
+
+  attr_customerID:
+    name: "KUNNR" # customer ID x
+
+  attr_country:
+    name: "LAND1" # country key x
+
+  attr_name:
+    name: "NAME1" # customer name x
+
+  attr_street:
+    name: "STRAS" # street + house number x
+
+  attr_city:
+    name: "ORT01" # city x
+
+  attr_zipcode:
+    name: "PSTLZ" # postal or zip code x
+
+  attr_phone:
+    name: "TELF1" # telephone number x
+
+  attr_email:
+    name: "SMTP_ADDR" # e-mail address x
+
+  attr_language:
+    name: "SPRAS" # language key (should be dependend on country) x
+
+  attr_creation_date:
+    name: "ERDAT" # creation date x
+
+  #attr_creation_name:
+  #  name: "ERNAM" # name who created the entry x
+
+  attr_modification_date:
+    name: "UPDAT"
+
+  #attr_account:
+  #  name: "KTOKD" # account type (customer account group) x
+
+  attr_currency:
+    name: "WAERS" # currency key x
+
+  attr_tax_vat:
+    name: "STCEG" # VAT Registration Number x
+
+  attr_tax_other:
+    name: "STCD1" # tax number (other than VAT) x
+
+
+company_B_tables:
+  customer_information:
+    attr_customerID:
+      name: "ID"
+    attr_account:
+      name: "Account Group"
+    attr_role:
+      name: "Role"
+    attr_contract:
+      name: "Contract"
+    attr_creation_date:
+      name: "Creation Date"
+    #attr_creation_name:
+    #  name: "User Created"
+    attr_modification_date:
+      name: "Modification Date"
+    attr_tax_number:
+      name: "TAX Number"
+  
+  customer_contact_details:
+    attr_customerID:
+      name: "Customer ID"
+    attr_name:
+      name: "Organization Name"
+    attr_address:
+      name: "Address 1"
+    attr_email:
+      name: "Email Address"
+    attr_phone_prefix:
+      name: "Country Prefix"
+    attr_phone_number:
+      name: "Contact Number"
+
+#########################################################
+##       Dataset creation: background info
+#########################################################
+
+account_groups:
+  "0001": "wholesale"
+  "0002": "retail"
+  "0003": "government"
+
+customer_details:
+  company_names:
+  locales:
+    - locale: de_DE
+      country_code: DE
+      country_name: Germany
+      phone: 49
+      language: DE
+      currency: EUR
+      companies:
+        - name: TechnikPro GmbH
+          mail: info@technikpro.de
+          previous_name: TechnikPartner GmbH
+          mail_variation: kontakt@technikpro.de
+          previous_mail: info@technikpartner.de
+
+        - name: GrünEnergie AG
+          mail: kontakt@gruenenergie.de
+          previous_name: GrünStrom AG
+          mail_variation: service@gruenenergie.de
+          previous_mail: info@gruenstrom.de
+
+        - name: ZukunftBau GmbH
+          mail: kontakt@zukunftbau.de
+          previous_name: BauZukunft GmbH
+          mail_variation: service@zukunftbau.de
+          previous_mail: info@bauzukunft.de
+
+        - name: NordSeeLogistik KG
+          mail: info@nordseelogistik.de
+          previous_name: NordTransport KG
+          mail_variation: kontakt@nordseelogistik.de
+          previous_mail: info@nordtransport.de
+
+        - name: MediCare Solutions GmbH
+          mail: info@medicare-solutions.de
+          previous_name: MediCare Systems GmbH
+          mail_variation: kontakt@medicare-solutions.de
+          previous_mail: service@medicare-systems.de
+
+        - name: AutoMeisterwerke AG
+          mail: kontakt@automeisterwerke.de
+          previous_name: AutoWerk AG
+          mail_variation: info@automeisterwerke.de
+          previous_mail: service@autowerk.de
+
+        - name: Bayerischer Genusshandel KG
+          mail: kontakt@genusshandel-bayern.de
+          previous_name: BayernGenuss KG
+          mail_variation: info@genusshandel-bayern.de
+          previous_mail: kontakt@bayerngenuss.de
+
+        - name: SmartIT Solutions GmbH
+          mail: support@smartit.de
+          previous_name: SmartIT GmbH
+          mail_variation: info@smartit.de
+          previous_mail: kontakt@smartit.de
+
+        - name: BioFarm Naturprodukte GmbH
+          mail: info@biofarm.de
+          previous_name: BioFarm GmbH
+          mail_variation: kontakt@biofarm.de
+          previous_mail: service@biofarm.de
+
+        - name: ElbeSchiffahrt GmbH
+          mail: kontakt@elbeschiffahrt.de
+          previous_name: ElbeTransport GmbH
+          mail_variation: info@elbeschiffahrt.de
+          previous_mail: service@elbetransport.de
+
+        - name: DigitalWerkstatt AG
+          mail: info@digitalwerkstatt.de
+          previous_name: DigitalPro AG
+          mail_variation: kontakt@digitalwerkstatt.de
+          previous_mail: support@digitalpro.de
+
+        - name: SchnellTrans Express KG
+          mail: kontakt@schnelltrans.de
+          previous_name: SchnellTrans KG
+          mail_variation: info@schnelltrans.de
+          previous_mail: service@schnelltrans.de
+
+        - name: AlpenLicht GmbH
+          mail: info@alpenlicht.de
+          previous_name: LichtAlpen GmbH
+          mail_variation: kontakt@alpenlicht.de
+          previous_mail: service@lichtalpen.de
+
+        - name: Hanseatic Brew AG
+          mail: kontakt@hansebrew.de
+          previous_name: HanseBrau AG
+          mail_variation: info@hansebrew.de
+          previous_mail: kontakt@hansebrau.de
+
+        - name: RheinTech Engineering KG
+          mail: info@rheintechnik.de
+          previous_name: RheinTechnik KG
+          mail_variation: kontakt@rheintechnik.de
+          previous_mail: info@rheintechnik.de
+
+        - name: GourmetFrische GmbH
+          mail: kontakt@gourmetfrische.de
+          previous_name: FrischeGourmet GmbH
+          mail_variation: info@gourmetfrische.de
+          previous_mail: service@frischegourmet.de
+
+        - name: TechnikInnovate GmbH
+          mail: info@technikinnovate.de
+          previous_name: TechnikSolutions GmbH
+          mail_variation: kontakt@technikinnovate.de
+          previous_mail: info@techniksolutions.de
+
+        - name: ÖkoEnergie AG
+          mail: kontakt@ökoenergie.de
+          previous_name: ÖkoStrom AG
+          mail_variation: service@ökoenergie.de
+          previous_mail: info@ökostrom.de
+
+        - name: ZukunftPlan Bau GmbH
+          mail: kontakt@zukunftplanbau.de
+          previous_name: PlanBau Zukunft GmbH
+          mail_variation: service@zukunftplanbau.de
+          previous_mail: info@planbauzukunft.de
+
+        - name: NordHafen Logistik KG
+          mail: info@nordhafenlogistik.de
+          previous_name: HafenTransport KG
+          mail_variation: kontakt@nordhafenlogistik.de
+          previous_mail: info@hafentransport.de
+
+        - name: MediPlus Systems GmbH
+          mail: info@mediplus-systems.de
+          previous_name: MediPlus Solutions GmbH
+          mail_variation: kontakt@mediplus-systems.de
+          previous_mail: service@mediplus-solutions.de
+
+        - name: MeisterAuto AG
+          mail: kontakt@meisterauto.de
+          previous_name: AutoMeister GmbH
+          mail_variation: info@meisterauto.de
+          previous_mail: service@automeister.de
+
+        - name: Bayerische Feinkost KG
+          mail: kontakt@bayerische-feinkost.de
+          previous_name: Feinkost Bayern KG
+          mail_variation: info@bayerische-feinkost.de
+          previous_mail: kontakt@feinkost-bayern.de
+
+        - name: SmartTech Solutions GmbH
+          mail: support@smarttech.de
+          previous_name: SmartIT Systems GmbH
+          mail_variation: info@smarttech.de
+          previous_mail: kontakt@smartit-systems.de
+
+        - name: NaturHof Bio GmbH
+          mail: info@naturhof-bio.de
+          previous_name: BioHof Naturprodukte GmbH
+          mail_variation: kontakt@naturhof-bio.de
+          previous_mail: service@biohof-natur.de
+
+        - name: WeserSchiffahrt GmbH
+          mail: kontakt@weserschiffahrt.de
+          previous_name: WeserTransport GmbH
+          mail_variation: info@weserschiffahrt.de
+          previous_mail: service@wesertransport.de
+
+        - name: DigitalLab AG
+          mail: info@digitallab.de
+          previous_name: DigitalWerk AG
+          mail_variation: kontakt@digitallab.de
+          previous_mail: support@digitalwerk.de
+
+        - name: SpeedTrans Express KG
+          mail: kontakt@speedtrans.de
+          previous_name: SpeedLogistik KG
+          mail_variation: info@speedtrans.de
+          previous_mail: service@speedlogistik.de
+
+        - name: AlpenGlanz GmbH
+          mail: info@alpenglanz.de
+          previous_name: GlanzAlpen GmbH
+          mail_variation: kontakt@alpenglanz.de
+          previous_mail: service@glanzalpen.de
+
+        - name: HanseBrewery AG
+          mail: kontakt@hansebrewery.de
+          previous_name: HanseBrauhaus AG
+          mail_variation: info@hansebrewery.de
+          previous_mail: kontakt@hansebrauhaus.de
+
+        - name: RheinTec Engineering KG
+          mail: info@rheintec.de
+          previous_name: RheinTechnologie KG
+          mail_variation: kontakt@rheintec.de
+          previous_mail: info@rheintechnologie.de
+
+        - name: FeinkostGourmet GmbH
+          mail: kontakt@feinkostgourmet.de
+          previous_name: GourmetFeinkost GmbH
+          mail_variation: info@feinkostgourmet.de
+          previous_mail: service@gourmetfeinkost.de
+    - locale: en_GB
+      country_code: GB
+      country_name: United Kingdom
+      phone: 44
+      language: EN
+      currency: GBP
+      companies:
+        - name: "Cedarstone Consulting Ltd"
+          mail: "contact@cedarstoneconsulting.co.uk"
+          mail_variation: "info@cedarstoneconsult.com"
+          previous_name: "Cedarstone Solutions"
+          previous_mail: "support@cedarstonesolutions.co.uk"
+
+        - name: "Thornfield Technologies"
+          mail: "info@thornfieldtech.co.uk"
+          mail_variation: "contact@thornfield-tech.com"
+          previous_name: "Thornfield Systems"
+          previous_mail: "help@thornfieldsystems.co.uk"
+
+        - name: "Harborview Enterprises"
+          mail: "contact@harborviewent.co.uk"
+          mail_variation: "info@harborviewenterprises.com"
+          previous_name: "Harborview Solutions"
+          previous_mail: "info@harborviewsolutions.co.uk"
+
+        - name: "Brightwood Energy Ltd"
+          mail: "info@brightwoodenergy.co.uk"
+          mail_variation: "contact@brightwoodenergy.com"
+          previous_name: "Brightwood Resources"
+          previous_mail: "support@brightwoodresources.com"
+
+        - name: "Maple Ridge Digital"
+          mail: "contact@mapleridgedigital.co.uk"
+          mail_variation: "info@mapleridgedigital.com"
+          previous_name: "Maple Ridge Tech"
+          previous_mail: "help@mapleridgetech.co.uk"
+
+        - name: "Ironclad Logistics"
+          mail: "support@ironcladlogistics.co.uk"
+          mail_variation: "contact@ironclad-logistics.com"
+          previous_name: "Ironclad Transport"
+          previous_mail: "info@ironcladtransport.co.uk"
+
+        - name: "Skyline Consulting Group"
+          mail: "info@skylineconsulting.co.uk"
+          mail_variation: "contact@skylineconsult.com"
+          previous_name: "Skyline Strategy"
+          previous_mail: "help@skyline-strategy.com"
+
+        - name: "Whiteridge Solutions"
+          mail: "contact@whiteridgesolutions.co.uk"
+          mail_variation: "info@whiteridge-solutions.com"
+          previous_name: "Whiteridge Technologies"
+          previous_mail: "support@whiteridgetech.co.uk"
+
+        - name: "Pinehurst Financial Services"
+          mail: "info@pinehurstfinancial.co.uk"
+          mail_variation: "contact@pinehurstfin.com"
+          previous_name: "Pinehurst Advisors"
+          previous_mail: "help@pinehurstadvisors.co.uk"
+
+        - name: "Vanguard Data Systems"
+          mail: "contact@vanguarddatasystems.co.uk"
+          mail_variation: "info@vanguardds.com"
+          previous_name: "Vanguard Solutions"
+          previous_mail: "support@vanguardsolutions.co.uk"
+
+        - name: "Greenfield Innovations"
+          mail: "info@greenfieldinnovations.co.uk"
+          mail_variation: "contact@greenfieldinnovation.com"
+          previous_name: "Greenfield Technologies"
+          previous_mail: "support@greenfieldtech.co.uk"
+
+        - name: "Crescent Cloud Solutions"
+          mail: "contact@crescentcloudsolutions.co.uk"
+          mail_variation: "info@crescentcloudsolutions.com"
+          previous_name: "Crescent Cloud"
+          previous_mail: "help@crescentcloud.co.uk"
+
+        - name: "Edgewater Systems"
+          mail: "info@edgewatersystems.co.uk"
+          mail_variation: "contact@edgewater-sys.com"
+          previous_name: "Edgewater Technologies"
+          previous_mail: "support@edgewatertech.co.uk"
+
+        - name: "Falcon Digital Marketing"
+          mail: "contact@falcondigital.co.uk"
+          mail_variation: "info@falcondigitalmarketing.com"
+          previous_name: "Falcon Digital"
+          previous_mail: "help@falcondigital.co.uk"
+
+        - name: "Lakeside Engineering Ltd"
+          mail: "info@lakesideeng.co.uk"
+          mail_variation: "contact@lakesideeng.com"
+          previous_name: "Lakeside Solutions"
+          previous_mail: "support@lakesidesolutions.co.uk"
+
+        - name: "Bluebird Innovations"
+          mail: "contact@bluebirdinnovations.co.uk"
+          mail_variation: "info@bluebirdinnovate.com"
+          previous_name: "Bluebird Tech"
+          previous_mail: "info@bluebirdtech.co.uk"
+
+        - name: "Riverside Construction Ltd"
+          mail: "info@riversideconstruction.co.uk"
+          mail_variation: "contact@riversideconstruction.com"
+          previous_name: "Riverside Building Services"
+          previous_mail: "help@riversidebuilding.com"
+
+        - name: "Silverstone Partners"
+          mail: "contact@silverstonepartners.co.uk"
+          mail_variation: "info@silverstonepartners.com"
+          previous_name: "Silverstone Consulting"
+          previous_mail: "support@silverstoneconsulting.co.uk"
+
+        - name: "Crystal Technologies"
+          mail: "info@crystaltech.co.uk"
+          mail_variation: "contact@crystal-technologies.com"
+          previous_name: "Crystal Solutions"
+          previous_mail: "support@crystalsolutions.co.uk"
+
+        - name: "Summit Innovations"
+          mail: "contact@summitinnovations.co.uk"
+          mail_variation: "info@summitinnovations.com"
+          previous_name: "Summit Enterprises"
+          previous_mail: "help@summitenterprises.co.uk"
+
+        - name: Cedarbrook Consulting Ltd
+          mail: contact@cedarbrookconsulting.co.uk
+          previous_name: Cedarbrook Solutions
+          mail_variation: info@cedarbrookconsult.com
+          previous_mail: support@cedarbrooksolutions.co.uk
+
+        - name: Thornhill Technologies
+          mail: info@thornhilltech.co.uk
+          previous_name: Thornhill Systems
+          mail_variation: contact@thornhill-tech.com
+          previous_mail: help@thornhillsystems.co.uk
+
+        - name: Harborpoint Enterprises
+          mail: contact@harborpointent.co.uk
+          previous_name: Harborpoint Solutions
+          mail_variation: info@harborpointenterprises.com
+          previous_mail: info@harborpointsolutions.co.uk
+
+        - name: Brightland Energy Ltd
+          mail: info@brightlandenergy.co.uk
+          previous_name: Brightland Resources
+          mail_variation: contact@brightlandenergy.com
+          previous_mail: support@brightlandresources.com
+
+        - name: Maple Crest Digital
+          mail: contact@maplecrestdigital.co.uk
+          previous_name: Maple Crest Tech
+          mail_variation: info@maplecrestdigital.com
+          previous_mail: help@maplecresttech.co.uk
+
+        - name: Steelclad Logistics
+          mail: support@steelcladlogistics.co.uk
+          previous_name: Steelclad Transport
+          mail_variation: contact@steelclad-logistics.com
+          previous_mail: info@steelcladtransport.co.uk
+
+        - name: Skyline Advisory Group
+          mail: info@skylineadvisory.co.uk
+          previous_name: Skyline Strategies
+          mail_variation: contact@skylineadvisory.com
+          previous_mail: help@skyline-strategies.com
+
+        - name: Whiterock Solutions
+          mail: contact@whiterocksolutions.co.uk
+          previous_name: Whiterock Technologies
+          mail_variation: info@whiterock-solutions.com
+          previous_mail: support@whiterocktech.co.uk
+
+        - name: Pinewood Financial Services
+          mail: info@pinewoodfinancial.co.uk
+          previous_name: Pinewood Advisors
+          mail_variation: contact@pinewoodfin.com
+          previous_mail: help@pinewoodadvisors.co.uk
+
+        - name: Vanguard Tech Systems
+          mail: contact@vanguardtechsystems.co.uk
+          previous_name: Vanguard IT Solutions
+          mail_variation: info@vanguardts.com
+          previous_mail: support@vanguarditsolutions.co.uk
+
+        - name: Greenhill Innovations
+          mail: info@greenhillinnovations.co.uk
+          previous_name: Greenhill Technologies
+          mail_variation: contact@greenhillinnovation.com
+          previous_mail: support@greenhilltech.co.uk
+
+        - name: Crescent Digital Solutions
+          mail: contact@crescentdigitalsolutions.co.uk
+          previous_name: Crescent Digital
+          mail_variation: info@crescentdigitalsolutions.com
+          previous_mail: help@crescentdigital.co.uk
+
+        - name: Edgeview Systems
+          mail: info@edgeviewsystems.co.uk
+          previous_name: Edgeview Technologies
+          mail_variation: contact@edgeview-sys.com
+          previous_mail: support@edgeviewtech.co.uk
+
+        - name: Falcon Media Marketing
+          mail: contact@falconmedia.co.uk
+          previous_name: Falcon Media
+          mail_variation: info@falconmediamarketing.com
+          previous_mail: help@falconmedia.co.uk
+
+        - name: Lakeshore Engineering Ltd
+          mail: info@lakeshoreeng.co.uk
+          previous_name: Lakeshore Solutions
+          mail_variation: contact@lakeshoreeng.com
+          previous_mail: support@lakeshoresolutions.co.uk
+
+        - name: Bluejay Innovations
+          mail: contact@bluejayinnovations.co.uk
+          previous_name: Bluejay Tech
+          mail_variation: info@bluejayinnovate.com
+          previous_mail: info@bluejaytech.co.uk
+
+        - name: Riverbend Construction Ltd
+          mail: info@riverbendconstruction.co.uk
+          previous_name: Riverbend Building Services
+          mail_variation: contact@riverbendconstruction.com
+          previous_mail: help@riverbendbuilding.com
+
+        - name: Silverbrook Partners
+          mail: contact@silverbrookpartners.co.uk
+          previous_name: Silverbrook Consulting
+          mail_variation: info@silverbrookpartners.com
+          previous_mail: support@silverbrookconsulting.co.uk
+
+        - name: Crystal Data Technologies
+          mail: info@crystaldata.co.uk
+          previous_name: Crystal Data Solutions
+          mail_variation: contact@crystal-data.com
+          previous_mail: support@crystaldata-solutions.co.uk
+
+        - name: Summit Digital Solutions
+          mail: contact@summitdigitalsolutions.co.uk
+          previous_name: Summit Enterprises
+          mail_variation: info@summitdigitalsolutions.com
+          previous_mail: help@summitenterprises.co.uk
+
+    - locale: en_US
+      country_code: US
+      country_name: United States
+      phone: 1
+      language: EN
+      currency: USD
+      companies:
+        - name: Summit Innovations Inc.
+          mail: contact@summitinnovations.com
+          mail_variation: info@summitinnovations.com
+          previous_name: Summit Technologies
+          previous_mail: support@summittechnologies.com
+
+        - name: Nova Healthcare Solutions
+          mail: hello@novahealthcare.com
+          mail_variation: service@novahealthcare.com
+          previous_name: Nova Medical
+          previous_mail: admin@novamedical.com
+
+        - name: SkyBridge Logistics
+          mail: support@skybridgelogistics.com
+          mail_variation: service@skybridgelogistics.net
+          previous_name: BridgeLogistics
+          previous_mail: contact@bridgelogistics.org
+
+        - name: Velocity Tech Services
+          mail: contact@velocitytech.com
+          mail_variation: info@velocitytech.net
+          previous_name: Velocity Systems
+          previous_mail: help@velocitysystems.com
+
+        - name: Green Horizons Energy
+          mail: inquiries@greenhorizons.com
+          mail_variation: info@greenhorizonsenergy.com
+          previous_name: GreenPower
+          previous_mail: admin@greenpower.org
+
+        - name: Horizon Biotech Industries
+          mail: info@horizonbiotech.com
+          mail_variation: support@horizonbiotech.net
+          previous_name: Horizon Biosciences
+          previous_mail: contact@horizonbiosciences.org
+
+        - name: Pinnacle Digital Media
+          mail: contact@pinnacledigital.com
+          mail_variation: support@pinnacledigital.net
+          previous_name: Pinnacle Media Group
+          previous_mail: info@pinnaclemediagroup.com
+
+        - name: Ironclad Manufacturing Co.
+          mail: sales@ironcladmanufacturing.com
+          mail_variation: info@ironcladmfg.com
+          previous_name: Ironclad Industries
+          previous_mail: contact@ironcladindustries.org
+
+        - name: BlueWave Solutions
+          mail: support@bluewavesolutions.com
+          mail_variation: contact@bluewavesolutions.org
+          previous_name: BlueWave Technologies
+          previous_mail: help@bluewavetech.com
+
+        - name: Apex Financial Advisors
+          mail: info@apexfinancial.com
+          mail_variation: inquiries@apexfinancialgroup.com
+          previous_name: Apex Investments
+          previous_mail: admin@apexinvestments.com
+
+        - name: Pulse Analytics
+          mail: hello@pulseanalytics.com
+          mail_variation: info@pulseanalytics.io
+          previous_name: Pulse Insights
+          previous_mail: contact@pulseinsights.com
+
+        - name: TerraGen Engineering
+          mail: inquiries@terragenengineering.com
+          mail_variation: support@terragenengineering.net
+          previous_name: TerraGen Technologies
+          previous_mail: info@terragen.tech
+
+        - name: Quantum Innovations
+          mail: support@quantuminnovations.com
+          mail_variation: help@quantuminnovations.co
+          previous_name: Quantum Technologies
+          previous_mail: info@quantumtech.org
+
+        - name: Redstone Enterprises
+          mail: service@redstoneenterprises.com
+          mail_variation: info@redstoneent.com
+          previous_name: Redstone Inc.
+          previous_mail: support@redstoneinc.com
+
+        - name: Stellar Web Solutions
+          mail: contact@stellarwebsolutions.com
+          mail_variation: info@stellarwebsolutions.io
+          previous_name: Stellar Web Technologies
+          previous_mail: support@stellarwebtech.com
+
+        - name: Oakridge Industries
+          mail: sales@oakridgeindustries.com
+          mail_variation: info@oakridgeindustries.net
+          previous_name: Oakridge Manufacturing
+          previous_mail: inquiries@oakridgemfg.com
+
+        - name: Evergreen Cloud Solutions
+          mail: hello@evergreencloud.com
+          mail_variation: support@evergreencloud.com
+          previous_name: Evergreen IT Solutions
+          previous_mail: contact@evergreenit.com
+
+        - name: SummitTech Global
+          mail: support@summittechglobal.com
+          mail_variation: info@summittechglobal.net
+          previous_name: SummitTech Solutions
+          previous_mail: help@summittechsolutions.com
+
+        - name: Radiant Software Systems
+          mail: inquiries@radiantsoftwaresystems.com
+          mail_variation: support@radiantsoftware.com
+          previous_name: Radiant Solutions
+          previous_mail: contact@radiantsolutions.org
+
+        - name: Skyline Construction Group
+          mail: info@skylineconstructiongroup.com
+          mail_variation: support@skylineconstructiongroup.org
+          previous_name: Skyline Builders
+          previous_mail: sales@skylinebuilders.com
+    - locale: fr_FR
+      country_code: FR
+      country_name: France
+      phone: 33
+      language: FR
+      currency: EUR
+      companies:
+        - name: Société Générale Tech
+          mail: contact@societegenerale-tech.fr
+          mail_variation: support@socgen-tech.fr
+          previous_name: Société Générale Innovations
+          previous_mail: innovation@societegenerale.fr
+
+        - name: Luminex Technologies
+          mail: info@luminex-tech.com
+          mail_variation: support@luminex-tech.fr
+          previous_name: Luminex Solutions
+          previous_mail: contact@luminex-solutions.com
+
+        - name: VéloCity Distribution
+          mail: contact@velocity-distribution.fr
+          mail_variation: support@velocitydistrib.fr
+          previous_name: Vélos Rapidement
+          previous_mail: info@velosrapidement.com
+
+        - name: EmploiNet France
+          mail: support@emploinet.fr
+          mail_variation: contact@emploinet.com
+          previous_name: Emploi 24/7
+          previous_mail: service@emploi247.fr
+
+        - name: Bénéfice Santé
+          mail: info@beneficesante.fr
+          mail_variation: contact@beneficesante.com
+          previous_name: Santé et Bien-être
+          previous_mail: info@sante-bienetre.fr
+
+        - name: Artisanat Luxe Paris
+          mail: contact@artisanatluxeparis.fr
+          mail_variation: support@artisanat-luxe-paris.com
+          previous_name: Parfumerie Artisanale
+          previous_mail: parfum@artisanatparis.com
+
+        - name: Estelle Energie
+          mail: info@estelleenergie.fr
+          mail_variation: contact@estelle-energie.com
+          previous_name: Estelle Solutions Vertes
+          previous_mail: info@estellesolutionsvertes.fr
+
+        - name: Mécanique Innovante
+          mail: contact@mecanique-innovante.fr
+          mail_variation: info@mecaniqueinnovante.com
+          previous_name: Innovations Mécaniques
+          previous_mail: info@innovationsmecanique.fr
+
+        - name: Paragone Consulting
+          mail: contact@paragoneconsulting.fr
+          mail_variation: support@paragone-consult.com
+          previous_name: Paragone Conseil
+          previous_mail: info@paragoneconseil.com
+
+        - name: Rénovation Maisons
+          mail: contact@renovationmaisons.fr
+          mail_variation: info@renovation-maisons.com
+          previous_name: Maisons Rénovées
+          previous_mail: service@maisonsrenovees.fr
+
+        - name: FinTech Solutions
+          mail: info@fintech-solutions.fr
+          mail_variation: support@fintech-solutions.com
+          previous_name: Solutions Financières Innovantes
+          previous_mail: contact@solutionsfinancières.fr
+
+        - name: Aléa Média
+          mail: contact@aleamedia.fr
+          mail_variation: support@aleamedia.com
+          previous_name: Aléa Communications
+          previous_mail: info@alea-communications.fr
+
+        - name: Étoile Aerospace
+          mail: contact@etoileaerospace.fr
+          mail_variation: info@etoile-aero.com
+          previous_name: Étoile Space Technologies
+          previous_mail: contact@etoilespace.fr
+
+        - name: Mobilité Urbaine
+          mail: support@mobilite-urbaine.fr
+          mail_variation: info@mobilite-urb.com
+          previous_name: Mobilité Durable
+          previous_mail: contact@mobilitedurable.fr
+
+        - name: TechNex Solutions
+          mail: info@technex-solutions.fr
+          mail_variation: support@technex-solutions.com
+          previous_name: TechNext Innovations
+          previous_mail: info@technext-innovations.com
+
+        - name: L'Oréal Beauté Digitale
+          mail: contact@loreal-beaute.fr
+          mail_variation: info@loreal-beautedigital.com
+          previous_name: L'Oréal Digital
+          previous_mail: info@loreal-digital.fr
+
+        - name: Métier Créatif
+          mail: info@metiercreatif.fr
+          mail_variation: contact@metiercreatif.com
+          previous_name: Créations Professionnelles
+          previous_mail: support@creationspro.fr
+
+        - name: Parc Logistique Sud
+          mail: contact@parclogistique.fr
+          mail_variation: info@parc-logistique-sud.com
+          previous_name: Logistique Sud
+          previous_mail: info@logistiquesud.fr
+
+        - name: ComptaPro Services
+          mail: support@comptaproservices.fr
+          mail_variation: info@comptapro.com
+          previous_name: Compta Pro Plus
+          previous_mail: service@comptaplus.fr
+
+        - name: Soirée & Co
+          mail: contact@soireeandco.fr
+          mail_variation: info@soiree-co.com
+          previous_name: Soirées de Luxe
+          previous_mail: info@soireesdeluxe.fr
+
+        - name: Société Générale Digital
+          mail: contact@societegenerale-digital.fr
+          mail_variation: support@socgen-digital.fr
+          previous_name: Société Générale Numérique
+          previous_mail: digital@societegenerale.fr
+
+        - name: Lumitech Systems
+          mail: info@lumitech-sys.com
+          mail_variation: support@lumitech-tech.fr
+          previous_name: Luminex Engineering
+          previous_mail: contact@luminex-eng.com
+
+        - name: VéloMax Distribution
+          mail: contact@velomax-distribution.fr
+          mail_variation: support@velomaxdistrib.fr
+          previous_name: Vélos Express
+          previous_mail: info@velosexpress.com
+
+        - name: JobNet France
+          mail: support@jobnet.fr
+          mail_variation: contact@jobnet.com
+          previous_name: Job Express
+          previous_mail: service@jobexpress.fr
+
+        - name: Vitalité Santé
+          mail: info@vitalitesante.fr
+          mail_variation: contact@vitalite-sante.com
+          previous_name: Santé Active
+          previous_mail: info@santeactive.fr
+
+        - name: LuxeArtisan Paris
+          mail: contact@luxartisanparis.fr
+          mail_variation: support@luxe-artisan-paris.com
+          previous_name: Artisanat Élégance
+          previous_mail: parfum@eleganceartisanale.com
+
+        - name: Solaria Énergie
+          mail: info@solariaenergie.fr
+          mail_variation: contact@solaria-energie.com
+          previous_name: Solutions Solaires
+          previous_mail: info@solutionssolaires.fr
+
+        - name: Ingénierie Mécanique
+          mail: contact@ingenierie-mecanique.fr
+          mail_variation: info@ingenieriemecanique.com
+          previous_name: Mécanique Précise
+          previous_mail: info@mecaniqueprecise.fr
+
+        - name: Paragon Consulting
+          mail: contact@paragonconsulting.fr
+          mail_variation: support@paragon-consult.com
+          previous_name: Paragon Stratégies
+          previous_mail: info@paragon-strategies.com
+
+        - name: Maison Rénovée
+          mail: contact@maisonrenovee.fr
+          mail_variation: info@maison-renovee.com
+          previous_name: Habitat Réno
+          previous_mail: service@habitatreno.fr
+
+        - name: FinTech Experts
+          mail: info@fintech-experts.fr
+          mail_variation: support@fintech-experts.com
+          previous_name: Experts Financiers
+          previous_mail: contact@expertsfinanciers.fr
+
+        - name: Aléa Digital
+          mail: contact@aleadigital.fr
+          mail_variation: support@aleadigital.com
+          previous_name: Aléa Tech
+          previous_mail: info@alea-tech.fr
+
+        - name: Astra Aerospace
+          mail: contact@astraaerospace.fr
+          mail_variation: info@astra-aero.com
+          previous_name: Astra Technologies
+          previous_mail: contact@astratech.fr
+
+        - name: Mobilité Éco
+          mail: support@mobilite-eco.fr
+          mail_variation: info@mobilite-eco.com
+          previous_name: Transport Durable
+          previous_mail: contact@transportdurable.fr
+
+        - name: NexTech Solutions
+          mail: info@nextech-solutions.fr
+          mail_variation: support@nextech-solutions.com
+          previous_name: TechNex Global
+          previous_mail: info@technex-global.com
+
+        - name: L'Oréal Innovation
+          mail: contact@loreal-innovation.fr
+          mail_variation: info@loreal-innov.com
+          previous_name: L'Oréal Futur
+          previous_mail: info@loreal-futur.fr
+
+        - name: Créatif Pro
+          mail: info@creatifpro.fr
+          mail_variation: contact@creatifpro.com
+          previous_name: Design Métier
+          previous_mail: support@designmetier.fr
+
+        - name: Parc Logistique Nord
+          mail: contact@parclogistiquenord.fr
+          mail_variation: info@parc-logistique-nord.com
+          previous_name: Logistique Express
+          previous_mail: info@logistiqueexpress.fr
+
+        - name: ComptaExpert Services
+          mail: support@comptaexpertservices.fr
+          mail_variation: info@comptaexpert.com
+          previous_name: Compta Direct
+          previous_mail: service@comptadirect.fr
+
+        - name: Événements & Co
+          mail: contact@evenementsandco.fr
+          mail_variation: info@evenements-co.com
+          previous_name: Soirées Prestige
+          previous_mail: info@soireesprestige.fr
+
+    - locale: es_ES
+      country_code: ES
+      country_name: Spain
+      phone: 34
+      language: ES
+      currency: EUR
+      companies:
+        - name: Innovaciones Eólica S.A.
+          mail: contacto@innoeolica.com
+          mail_variation: info@innovaciones-eolica.es
+          previous_name: Eólica Innovadora S.L.
+          previous_mail: contacto@eolicainnovadora.com
+
+        - name: Soluciones Digitales Avanzadas S.L.
+          mail: soporte@solucionesda.es
+          mail_variation: info@solucionesda.com
+          previous_name: Digital Avance S.A.
+          previous_mail: contacto@digitalavance.es
+
+        - name: Finca Real Estate
+          mail: ventas@fincarealestate.es
+          mail_variation: info@fincareal.com
+          previous_name: Inmuebles Finca Real
+          previous_mail: info@inmueblesfinca.com
+
+        - name: Biomedtech Innovación
+          mail: contacto@biomedtech.com
+          mail_variation: ventas@biomedtech.net
+          previous_name: Tecnología Biomédica Avanzada
+          previous_mail: contacto@tecno-bio.com
+
+        - name: Agrícola Común S.A.
+          mail: info@agricolacomun.es
+          mail_variation: contacto@agricolacomun.com
+          previous_name: Suministros Agrícolas Comunes
+          previous_mail: ventas@suministrosagricolas.com
+
+        - name: Exportex Comercio Internacional
+          mail: info@exportexintl.com
+          mail_variation: exportaciones@exportex.com
+          previous_name: Exportación Tex España
+          previous_mail: ventas@exportaciontex.es
+
+        - name: Automóviles Verde y Azul
+          mail: contacto@autoverdeazul.es
+          mail_variation: ventas@automovilvesa.com
+          previous_name: VerdeAzul Motor
+          previous_mail: ventas@verdeazulmotor.com
+
+        - name: Viajar S.A.
+          mail: reservas@viajar.com
+          mail_variation: contacto@viajarviajes.com
+          previous_name: Turismo Viajar
+          previous_mail: info@turismoviajar.com
+
+        - name: Construcción de Infraestructuras Sostenibles S.L.
+          mail: contacto@construccionesostenibles.es
+          mail_variation: info@infraestructurasostenible.com
+          previous_name: Infraestructuras Ecológicas S.A.
+          previous_mail: contacto@infraeco.com
+
+        - name: Tecnología Avanzada Energética
+          mail: info@tecenergia.es
+          mail_variation: contacto@tec-energia.com
+          previous_name: Innovación Energética S.L.
+          previous_mail: contacto@innovenergia.com
+
+        - name: Oleo Verde
+          mail: contacto@oleoverde.com
+          mail_variation: ventas@oleoverde.es
+          previous_name: Aceites Oleo Verde
+          previous_mail: contacto@aceitesoleoverde.com
+
+        - name: Alimentos Naturales S.A.
+          mail: info@alimentosnaturales.com
+          mail_variation: contacto@alimentosnaturales.es
+          previous_name: Comidas Naturales S.A.
+          previous_mail: contacto@comidasnaturales.com
+
+        - name: Delicias del Mar S.L.
+          mail: info@deliciasdelmar.es
+          mail_variation: contacto@deliciasmarinas.com
+          previous_name: Mariscos Deliciosos S.A.
+          previous_mail: contacto@mariscosdeliciosos.com
+
+        - name: EcoTransporte S.A.
+          mail: info@ecotransporte.es
+          mail_variation: contacto@ecotransportesa.com
+          previous_name: Transporte Verde S.L.
+          previous_mail: info@transporteverde.com
+
+        - name: Clínica Salud y Bienestar
+          mail: contacto@clinicasaludybienestar.es
+          mail_variation: info@saludbienestarclinic.com
+          previous_name: Centro de Salud Bienestar
+          previous_mail: contacto@centrosaludbienestar.com
+
+        - name: Renovables Eólica S.A.
+          mail: contacto@renovableseolica.com
+          mail_variation: info@renovables-eolica.es
+          previous_name: Viento Renovable S.L.
+          previous_mail: contacto@vientorenovable.com
+
+        - name: Soluciones Digitales Inteligentes S.L.
+          mail: soporte@solucionesdi.es
+          mail_variation: info@solucionesdigitalesinteligentes.com
+          previous_name: Avance Digital S.A.
+          previous_mail: contacto@avancedigital.es
+
+        - name: Terra Real Estate
+          mail: ventas@terrare.es
+          mail_variation: info@terrarestate.com
+          previous_name: Inmobiliaria Terra
+          previous_mail: info@inmobiliariaterrar.com
+
+        - name: BioTechMed Innovación
+          mail: contacto@biotechmed.com
+          mail_variation: ventas@biotechmed.net
+          previous_name: Tecnología Médica Avanzada
+          previous_mail: contacto@tecnomedica.com
+
+        - name: AgroComún S.A.
+          mail: info@agrocomun.es
+          mail_variation: contacto@agrocomun.com
+          previous_name: Insumos Agrícolas S.L.
+          previous_mail: ventas@insumosagricolas.com
+
+        - name: Expotex Comercio Global
+          mail: info@expotexglobal.com
+          mail_variation: exportaciones@expotex.com
+          previous_name: Exportación Textil España
+          previous_mail: ventas@exportaciontextil.es
+
+        - name: Automoción Verde y Azul
+          mail: contacto@automocionverdeazul.es
+          mail_variation: ventas@auto-verdeazul.com
+          previous_name: Motor VerdeAzul
+          previous_mail: ventas@motorverdeazul.com
+
+        - name: Viajes Global S.A.
+          mail: reservas@viajesglobal.com
+          mail_variation: contacto@viajesglo.com
+          previous_name: Turismo Global
+          previous_mail: info@turismoglobal.com
+
+        - name: Infraestructuras Modernas Sostenibles S.L.
+          mail: contacto@infraestructurasmodernas.es
+          mail_variation: info@infraestructurasmodernas.com
+          previous_name: Construcciones Ecológicas S.A.
+          previous_mail: contacto@construccioneseco.com
+
+        - name: Tecnología Energética Sostenible
+          mail: info@tecenergetica.es
+          mail_variation: contacto@tec-energetica.com
+          previous_name: Innovación en Energía S.L.
+          previous_mail: contacto@innovacionenergia.com
+
+        - name: Oleo Puro
+          mail: contacto@oleopuro.com
+          mail_variation: ventas@oleopuro.es
+          previous_name: Aceites Oleo Puro
+          previous_mail: contacto@aceitesoleopuro.com
+
+        - name: NutriAlimentos S.A.
+          mail: info@nutrialimentos.com
+          mail_variation: contacto@nutrialimentos.es
+          previous_name: Alimentos Saludables S.A.
+          previous_mail: contacto@alimentossaludables.com
+
+        - name: Sabores del Mar S.L.
+          mail: info@saboresdelmar.es
+          mail_variation: contacto@saboresmarinos.com
+          previous_name: Pescados Deliciosos S.A.
+          previous_mail: contacto@pescadosdeliciosos.com
+
+        - name: VerdeTransporte S.A.
+          mail: info@verdetransporte.es
+          mail_variation: contacto@verdetransportes.com
+          previous_name: Transporte Sostenible S.L.
+          previous_mail: info@transportesostenible.com
+
+        - name: Centro Médico Bienestar
+          mail: contacto@centromedicobienestar.es
+          mail_variation: info@medicobienestarclinic.com
+          previous_name: Salud Integral S.L.
+          previous_mail: contacto@saludintegral.com
+
+    - locale: hi_IN
+      country_code: IN
+      country_name: India
+      phone: 91
+      language: HI
+      currency: INR
+      companies:
+        - name: RajTech Solutions Pvt. Ltd.
+          mail: contact@rajtechsolutions.in
+          mail_variation: info@rajtechsol.com
+          previous_name: Raj Electronics
+          previous_mail: sales@rajelectronics.in
+
+        - name: SoluFin Consultancy
+          mail: support@solufinconsult.com
+          mail_variation: info@solufin.in
+          previous_name: SoluFin Ventures
+          previous_mail: contact@solufinventures.co.in
+
+        - name: BluWave Technologies
+          mail: info@bluwavetech.in
+          mail_variation: hello@bluwave.com
+          previous_name: BluWave Innovations
+          previous_mail: support@bluwaveinnovations.com
+
+        - name: ZenHealth Systems Pvt. Ltd.
+          mail: inquiries@zenhealthsys.in
+          mail_variation: contact@zenhealthsystems.com
+          previous_name: ZenLife Healthcare
+          previous_mail: info@zenlifehealth.com
+
+        - name: NetMax Solutions
+          mail: admin@netmaxsol.in
+          mail_variation: info@netmaxsolutions.in
+          previous_name: MaxNet Technologies
+          previous_mail: sales@maxnettech.com
+
+        - name: Apex Translogistics
+          mail: sales@apextranslogistics.in
+          mail_variation: info@apextranslog.com
+          previous_name: Apex Freight Solutions
+          previous_mail: contact@apexfreight.co.in
+
+        - name: InnoTech Systems
+          mail: support@innotechsys.in
+          mail_variation: hello@innotechsystems.com
+          previous_name: InnoTech Solutions
+          previous_mail: info@innotechsolutions.in
+
+        - name: Vortex Media Pvt. Ltd.
+          mail: info@vortexmedia.in
+          mail_variation: sales@vortexmedia.co.in
+          previous_name: Vortex Digital
+          previous_mail: contact@vortexdigital.com
+
+        - name: Allterra Builders Pvt. Ltd.
+          mail: info@allterrabuilders.in
+          mail_variation: contact@allterrabuilders.com
+          previous_name: Allterra Construction
+          previous_mail: support@allterraconstruct.in
+
+        - name: JivaTech Industries
+          mail: inquiries@jivatechind.in
+          mail_variation: contact@jivatech.com
+          previous_name: Jiva Technologies
+          previous_mail: support@jivatechnologies.com
+
+        - name: NexaSoft Solutions
+          mail: hello@nexasoftsolutions.in
+          mail_variation: info@nexasoft.com
+          previous_name: NexaTech Solutions
+          previous_mail: sales@nexatechsolutions.com
+
+        - name: Quantum Info Systems
+          mail: info@quantuminfosys.in
+          mail_variation: contact@quantuminfosystems.com
+          previous_name: Quantum Technologies
+          previous_mail: support@quantumtech.com
+
+        - name: BrightLogix Transport Pvt. Ltd.
+          mail: logistics@brightlogix.in
+          mail_variation: support@brightlogix.com
+          previous_name: BrightLogix Logistics
+          previous_mail: info@brightlogixlogistics.in
+
+        - name: Vora Motors Pvt. Ltd.
+          mail: sales@voramotors.in
+          mail_variation: info@voramotors.com
+          previous_name: VoraAutomobiles
+          previous_mail: support@voraautomobiles.co.in
+
+        - name: MindWorks Media
+          mail: inquiries@mindworksmedia.in
+          mail_variation: hello@mindworksmedia.com
+          previous_name: MindWorks Creative
+          previous_mail: info@mindworkscreative.in
+
+        - name: IntegraTech Solutions Pvt. Ltd.
+          mail: support@integratechsolutions.in
+          mail_variation: contact@integratechsol.com
+          previous_name: Integra Innovations
+          previous_mail: info@integrainnovations.com
+
+        - name: Axis Solar Systems Pvt. Ltd.
+          mail: contact@axissolarsystems.in
+          mail_variation: info@axissolar.co.in
+          previous_name: Axis Renewable Energy
+          previous_mail: sales@axisrenewables.in
+
+        - name: SparkInno Labs
+          mail: hello@sparkinno.in
+          mail_variation: info@sparkinno.com
+          previous_name: Spark Enterprises
+          previous_mail: support@sparkenterprises.co.in
+
+        - name: MediCare Solutions Pvt. Ltd.
+          mail: care@medicaresolutions.in
+          mail_variation: support@medicaresolutions.com
+          previous_name: MediCare Health
+          previous_mail: info@medicarehealth.in
+
+        - name: BrightEdge Technologies Pvt. Ltd.
+          mail: inquiries@brightedgetechnologies.in
+          mail_variation: contact@brightedgetech.com
+          previous_name: BrightEdge Innovations
+          previous_mail: sales@brightedgeinnovations.com
+
+        - name: RajSys Technologies Pvt. Ltd.
+          mail: contact@rajsystech.in
+          mail_variation: info@rajsystech.com
+          previous_name: Raj Systems
+          previous_mail: sales@rajsystems.in
+
+        - name: SoluCore Consultancy
+          mail: support@solucoreconsult.com
+          mail_variation: info@solucore.in
+          previous_name: SoluCore Ventures
+          previous_mail: contact@solucoreventures.co.in
+
+        - name: BluStream Technologies
+          mail: info@blustreamtech.in
+          mail_variation: hello@blustream.com
+          previous_name: BluStream Innovations
+          previous_mail: support@blustreaminnovations.com
+
+        - name: ZenCare Systems Pvt. Ltd.
+          mail: inquiries@zencaresys.in
+          mail_variation: contact@zencaresystems.com
+          previous_name: ZenWell Healthcare
+          previous_mail: info@zenwellhealth.com
+
+        - name: MaxNet Solutions
+          mail: admin@maxnetsol.in
+          mail_variation: info@maxnetsolutions.in
+          previous_name: NetMax Technologies
+          previous_mail: sales@netmaxtech.com
+
+        - name: Apex Cargo Logistics
+          mail: sales@apexcargologistics.in
+          mail_variation: info@apexcargo.com
+          previous_name: Apex Global Freight
+          previous_mail: contact@apexglobalfreight.co.in
+
+        - name: InnoSys Technologies
+          mail: support@innosystech.in
+          mail_variation: hello@innosystech.com
+          previous_name: InnoSys Solutions
+          previous_mail: info@innosyssolutions.in
+
+        - name: Vortex Digital Pvt. Ltd.
+          mail: info@vortexdigital.in
+          mail_variation: sales@vortexdigital.co.in
+          previous_name: Vortex Creative
+          previous_mail: contact@vortexcreative.com
+
+        - name: TerraBuild Developers Pvt. Ltd.
+          mail: info@terrabuild.in
+          mail_variation: contact@terrabuild.com
+          previous_name: TerraBuild Constructions
+          previous_mail: support@terrabuildconstruct.in
+
+        - name: JivaSys Industries
+          mail: inquiries@jivasysind.in
+          mail_variation: contact@jivasys.com
+          previous_name: Jiva Systems
+          previous_mail: support@jivasystems.com
+
+        - name: NexaByte Solutions
+          mail: hello@nexabytesolutions.in
+          mail_variation: info@nexabyte.com
+          previous_name: NexaSoft Innovations
+          previous_mail: sales@nexasoftinnovations.com
+
+        - name: Quantum Data Systems
+          mail: info@quantumdatasys.in
+          mail_variation: contact@quantumdatasystems.com
+          previous_name: Quantum InfoTech
+          previous_mail: support@quantuminfotech.com
+
+        - name: BrightWay Transport Pvt. Ltd.
+          mail: logistics@brightwaytrans.in
+          mail_variation: support@brightwaylogistics.com
+          previous_name: BrightWay Freight
+          previous_mail: info@brightwayfreight.in
+
+        - name: Vora Auto Pvt. Ltd.
+          mail: sales@voraauto.in
+          mail_variation: info@voraauto.com
+          previous_name: Vora Vehicles
+          previous_mail: support@voravehicles.co.in
+
+        - name: MindSphere Media
+          mail: inquiries@mindspheremedia.in
+          mail_variation: hello@mindspheremedia.com
+          previous_name: MindSphere Creative
+          previous_mail: info@mindspherecreative.in
+
+        - name: IntegraSys Solutions Pvt. Ltd.
+          mail: support@integrasysolutions.in
+          mail_variation: contact@integrasys.com
+          previous_name: Integra Systems
+          previous_mail: info@integrasystems.com
+
+        - name: Axis Renewables Pvt. Ltd.
+          mail: contact@axisrenewables.in
+          mail_variation: info@axisrenewables.co.in
+          previous_name: Axis Green Energy
+          previous_mail: sales@axisgreenenergy.in
+
+        - name: SparkEdge Labs
+          mail: hello@sparkedge.in
+          mail_variation: info@sparkedge.com
+          previous_name: Spark Solutions
+          previous_mail: support@sparksolutions.co.in
+
+        - name: MediTrust Solutions Pvt. Ltd.
+          mail: care@meditrustsolutions.in
+          mail_variation: support@meditrust.com
+          previous_name: MediTrust Health
+          previous_mail: info@meditrusthealth.in
+
+        - name: BrightSphere Technologies Pvt. Ltd.
+          mail: inquiries@brightspheretechnologies.in
+          mail_variation: contact@brightspheretech.com
+          previous_name: BrightSphere Innovations
+          previous_mail: sales@brightsphereinnovations.com
+
+    - locale: zh_CN
+      country_code: CN
+      country_name: China
+      phone: 86
+      language: ZH
+      currency: CNY
+      companies:
+        - name: Huatai Fusion Technologies
+          mail: contact@huataifusion.com
+          mail_variation: info@huataifusion.cn
+          previous_name: Huatai Solutions
+          previous_mail: support@huataisolutions.cn
+
+        - name: Longwei Sky Innovations
+          mail: inquiry@longweisky.com
+          mail_variation: sales@longweisky.cn
+          previous_name: Longwei Technologies
+          previous_mail: admin@longweitech.cn
+
+        - name: Zhongyuan Green Energy
+          mail: service@zygreenenergy.com
+          mail_variation: support@zygreen.cn
+          previous_name: Zhongyuan Clean Power
+          previous_mail: info@zycleanpower.cn
+
+        - name: Jincheng Smart Solutions
+          mail: contact@jinchengsmart.com
+          mail_variation: helpdesk@jinchengsmart.cn
+          previous_name: Jincheng Technologies
+          previous_mail: info@jinchengtech.cn
+
+        - name: Tianlong Quantum Industries
+          mail: info@tianlongquantum.com
+          mail_variation: sales@tianlongquantum.cn
+          previous_name: Tianlong Tech
+          previous_mail: admin@tianlongtech.cn
+
+        - name: Mingli Nextgen Robotics
+          mail: support@minglinextgen.com
+          mail_variation: info@minglinextgen.cn
+          previous_name: Mingli Robotics
+          previous_mail: contact@minglirobotics.cn
+
+        - name: Zhongtian Titan Construction
+          mail: inquiries@zhongtiantitan.com
+          mail_variation: contact@zhongtiantitan.cn
+          previous_name: Zhongtian Builders
+          previous_mail: info@zhongtianbuilders.cn
+
+        - name: Tianwei Digital Solutions
+          mail: support@tianweidigital.com
+          mail_variation: contact@tianweidigital.cn
+          previous_name: Tianwei Tech
+          previous_mail: sales@tianweitech.cn
+
+        - name: Lianhua Blue Horizon Enterprises
+          mail: inquiry@lianhuabluehorizon.com
+          mail_variation: info@lianhuabluehorizon.cn
+          previous_name: Lianhua Enterprises Ltd.
+          previous_mail: info@lianhuaent.com
+
+        - name: Jiangnan Precision Instruments
+          mail: sales@jiangnanprecision.com
+          mail_variation: contact@jiangnanprecision.cn
+          previous_name: Jiangnan Instruments Co.
+          previous_mail: info@jiangnaninstruments.cn
+
+        - name: Baode EcoTech Solutions
+          mail: info@baodeecotech.com
+          mail_variation: support@baodeecotech.cn
+          previous_name: Baode Environmental Tech
+          previous_mail: sales@baodeenvirotech.cn
+
+        - name: Zhongxing AeroSystems
+          mail: contact@zhongxingaerosystems.com
+          mail_variation: info@zhongxingaerosystems.cn
+          previous_name: Zhongxing Aviation Systems
+          previous_mail: inquiries@zhongxingaviation.com
+
+        - name: Xuanhua Visionary Electronics
+          mail: support@xuanhuavisionary.com
+          mail_variation: contact@xuanhuavisionary.cn
+          previous_name: Xuanhua Electronics Co.
+          previous_mail: info@xuanhuaelec.com
+
+        - name: Beixin Future Tech
+          mail: inquiries@beixinfuturetech.com
+          mail_variation: info@beixinfuturetech.cn
+          previous_name: Beixin Advanced Technologies
+          previous_mail: sales@beixintech.cn
+
+        - name: Qinglong BioHealth Systems
+          mail: info@qinglongbiohealth.com
+          mail_variation: support@qinglongbiohealth.cn
+          previous_name: Qinglong Medical Systems
+          previous_mail: contact@qinglongmed.cn
+
+        - name: Huanxing Oceanic Solutions
+          mail: info@huanxingoceanic.com
+          mail_variation: support@huanxingoceanic.cn
+          previous_name: Huanxing Maritime Tech
+          previous_mail: inquiries@huanxingmaritime.cn
+
+        - name: Dongxing Robotics & Automation
+          mail: contact@dongxingrobots.com
+          mail_variation: info@dongxingrobots.cn
+          previous_name: Dongxing Robotic Systems
+          previous_mail: sales@dongxingrobots.cn
+
+        - name: Beihu Arctic Innovations
+          mail: support@beihuarctic.com
+          mail_variation: info@beihuarctic.cn
+          previous_name: Beihu Cold Technologies
+          previous_mail: inquiries@beihucoldtech.cn
+
+        - name: Jinyang Maritime Technologies
+          mail: info@jinyangmaritime.com
+          mail_variation: support@jinyangmaritime.cn
+          previous_name: Jinyang Shipping Solutions
+          previous_mail: contact@jinyangshipping.cn
+
+        - name: Huatai Synergy Technologies
+          mail: contact@huataisynergy.com
+          mail_variation: info@huataisynergy.cn
+          previous_name: Huatai Systems
+          previous_mail: support@huataisys.cn
+
+        - name: Longwei Horizon Innovations
+          mail: inquiry@longweihorizon.com
+          mail_variation: sales@longweihorizon.cn
+          previous_name: Longwei Advanced Tech
+          previous_mail: admin@longweiadvtech.cn
+
+        - name: Zhongyuan Renewable Energy
+          mail: service@zyrenewableenergy.com
+          mail_variation: support@zyrenew.cn
+          previous_name: Zhongyuan Green Solutions
+          previous_mail: info@zygreensolutions.cn
+
+        - name: Jincheng Intelligent Solutions
+          mail: contact@jinchengintelligent.com
+          mail_variation: helpdesk@jinchengintelligent.cn
+          previous_name: Jincheng Smart Tech
+          previous_mail: info@jinchengsmarttech.cn
+
+        - name: Tianlong Quantum Solutions
+          mail: info@tianlongquantumsol.com
+          mail_variation: sales@tianlongquantumsol.cn
+          previous_name: Tianlong Quantum Systems
+          previous_mail: admin@tianlongquantumsys.cn
+
+        - name: Mingli Future Robotics
+          mail: support@minglifuture.com
+          mail_variation: info@minglifuture.cn
+          previous_name: Mingli Automation
+          previous_mail: contact@mingliautomation.cn
+
+        - name: Zhongtian Titan Engineering
+          mail: inquiries@zhongtiantitaneng.com
+          mail_variation: contact@zhongtiantitaneng.cn
+          previous_name: Zhongtian ConstructTech
+          previous_mail: info@zhongtianconstruct.cn
+
+        - name: Tianwei Digital Innovations
+          mail: support@tianweidigitalinnov.com
+          mail_variation: contact@tianweidigitalinnov.cn
+          previous_name: Tianwei Smart Systems
+          previous_mail: sales@tianweismart.cn
+
+        - name: Lianhua Blue Sky Enterprises
+          mail: inquiry@lianhuabluesky.com
+          mail_variation: info@lianhuabluesky.cn
+          previous_name: Lianhua Holdings
+          previous_mail: info@lianhuaholdings.com
+
+        - name: Jiangnan Precision Systems
+          mail: sales@jiangnanprecisionsys.com
+          mail_variation: contact@jiangnanprecisionsys.cn
+          previous_name: Jiangnan Measurement Tech
+          previous_mail: info@jiangnanmeasure.cn
+
+        - name: Baode GreenTech Solutions
+          mail: info@baodegreentech.com
+          mail_variation: support@baodegreentech.cn
+          previous_name: Baode Eco Systems
+          previous_mail: sales@baodeecosys.cn
+
+        - name: Zhongxing Aerospace Systems
+          mail: contact@zhongxingaerospace.com
+          mail_variation: info@zhongxingaerospace.cn
+          previous_name: Zhongxing Flight Technologies
+          previous_mail: inquiries@zhongxingflight.cn
+
+        - name: Xuanhua Innovative Electronics
+          mail: support@xuanhuainnovative.com
+          mail_variation: contact@xuanhuainnovative.cn
+          previous_name: Xuanhua Smart Electronics
+          previous_mail: info@xuanhuasmart.cn
+
+        - name: Beixin TechFront Solutions
+          mail: inquiries@beixintechfront.com
+          mail_variation: info@beixintechfront.cn
+          previous_name: Beixin Advanced Systems
+          previous_mail: sales@beixinadvancesys.cn
+
+        - name: Qinglong BioMedical Systems
+          mail: info@qinglongbiomed.com
+          mail_variation: support@qinglongbiomed.cn
+          previous_name: Qinglong Healthcare Tech
+          previous_mail: contact@qinglonghealthtech.cn
+
+        - name: Huanxing DeepSea Solutions
+          mail: info@huanxingdeepsea.com
+          mail_variation: support@huanxingdeepsea.cn
+          previous_name: Huanxing Ocean Systems
+          previous_mail: inquiries@huanxingoceansys.cn
+
+        - name: Dongxing AI Robotics
+          mail: contact@dongxingairobots.com
+          mail_variation: info@dongxingairobots.cn
+          previous_name: Dongxing Smart Machines
+          previous_mail: sales@dongxingsmart.cn
+
+        - name: Beihu Polar Innovations
+          mail: support@beihupolar.com
+          mail_variation: info@beihupolar.cn
+          previous_name: Beihu Arctic Systems
+          previous_mail: inquiries@beihuarcticsys.cn
+
+        - name: Jinyang Marine Technologies
+          mail: info@jinyangmarine.com
+          mail_variation: support@jinyangmarine.cn
+          previous_name: Jinyang Naval Systems
+          previous_mail: contact@jinyangnavalsys.cn
+    - locale: pt_BR
+      country_code: BR
+      country_name: Brazil
+      phone: 55
+      language: PT
+      currency: BRL
+      companies:
+        - name: SolVento Energy Solutions
+          mail: contact@solvento.com.br
+          mail_variation: info@solvento-energy.com.br
+          previous_name: VentoPuro Renewables
+          previous_mail: hello@ventopuro.com.br
+
+        - name: NovaCana Agritech
+          mail: info@novacana.com.br
+          mail_variation: support@novacana-tech.com.br
+          previous_name: CanaSmart Solutions
+          previous_mail: support@canasmart.com.br
+
+        - name: TransBrasa Logistics
+          mail: contact@transbrasa.com.br
+          mail_variation: logistics@trans-brasa.net.br
+          previous_name: RotaBrasa Transportes
+          previous_mail: info@rotabrasa.com.br
+
+        - name: BioVida Pharmaceuticals
+          mail: hello@biovida.com.br
+          mail_variation: research@biovida-pharma.com.br
+          previous_name: PharmaNatural Brazil
+          previous_mail: contact@pharmanatural.com.br
+
+        - name: EcoWave Environmental Services
+          mail: services@ecowave.com.br
+          mail_variation: info@eco-wave.net.br
+          previous_name: BioCiclo Solutions
+          previous_mail: team@biociclo.com.br
+
+        - name: AzulTec Technology
+          mail: support@azultec.com.br
+          mail_variation: hello@azul-tech.com.br
+          previous_name: TecBrasa Innovations
+          previous_mail: support@tecbrasa.com.br
+
+        - name: AgroNorte Supplies
+          mail: contact@agronorte.com.br
+          mail_variation: sales@agro-norte.biz
+          previous_name: NorteAgro Distributions
+          previous_mail: info@norteagro.com.br
+
+        - name: Lumina Design Studio
+          mail: design@lumina.com.br
+          mail_variation: creative@luminastudio.net.br
+          previous_name: LuzArte Creations
+          previous_mail: contact@luzarte.com.br
+
+        - name: VerdeFlora Landscaping
+          mail: contact@verdeflora.com.br
+          mail_variation: info@verde-flora.biz
+          previous_name: FloraVerde Gardening
+          previous_mail: hello@floraverde.com.br
+
+        - name: SãoPaulo Industrial Tools
+          mail: tools@saopauloindustrial.com.br
+          mail_variation: sales@spi-tools.com.br
+          previous_name: SP Equipments
+          previous_mail: info@sp-equipments.com.br
+
+        - name: PuraMar Seafood
+          mail: sales@puramar.com.br
+          mail_variation: contact@pura-mar.net.br
+          previous_name: MarPuro Delicacies
+          previous_mail: hello@marpuro.com.br
+
+        - name: InovaMed Devices
+          mail: support@inovamed.com.br
+          mail_variation: devices@inovamed-tech.net.br
+          previous_name: MedBrasa Solutions
+          previous_mail: contact@medbrasa.com.br
+
+        - name: RioBrasa Steelworks
+          mail: info@riobrasa.com.br
+          mail_variation: sales@rio-brasa-steel.com.br
+          previous_name: AçoBrasa Industries
+          previous_mail: contact@acobrasa.com.br
+
+        - name: TerraNova Real Estate
+          mail: info@terranova.com.br
+          mail_variation: sales@terra-nova.net.br
+          previous_name: NovaTerra Properties
+          previous_mail: contact@novaterra.com.br
+
+        - name: EcoBrasa Biofuels
+          mail: contact@ecobrasa.com.br
+          mail_variation: info@eco-brasa.biz
+          previous_name: BioBrasa Energy
+          previous_mail: hello@biobrasa.com.br
+
+        - name: IntegraData Solutions
+          mail: support@integradata.com.br
+          mail_variation: contact@integra-data.net.br
+          previous_name: DataLink Brazil
+          previous_mail: info@datalinkbr.com.br
+
+        - name: BrasaLuz Lighting
+          mail: sales@brasaluz.com.br
+          mail_variation: contact@brasa-luz.net.br
+          previous_name: LuzBrasa Solutions
+          previous_mail: hello@luzbrasa.com.br
+
+        - name: TopMar Construction
+          mail: projects@topmar.com.br
+          mail_variation: contact@top-mar.biz
+          previous_name: MarTop Builders
+          previous_mail: info@martop.com.br
+
+        - name: CaféNorte Roasters
+          mail: hello@cafenorte.com.br
+          mail_variation: info@cafe-norte.biz
+          previous_name: NorteCafé Exporters
+          previous_mail: sales@nortecafe.com.br
+
+        - name: VivaSabor Foods
+          mail: info@vivasabor.com.br
+          mail_variation: hello@viva-sabor.net.br
+          previous_name: SaborVivo Brazil
+          previous_mail: contact@saborvivo.com.br
+
+        - name: SolVento Renewables
+          mail: contact@solventorenew.com.br
+          mail_variation: info@solvento-renewables.com.br
+          previous_name: VentoPuro Green Energy
+          previous_mail: hello@ventopuroenergy.com.br
+
+        - name: NovaCana BioAgri
+          mail: info@novacanabio.com.br
+          mail_variation: support@novacana-bioagri.com.br
+          previous_name: CanaSmart Technologies
+          previous_mail: support@canasmarttech.com.br
+
+        - name: TransBrasa Freight
+          mail: contact@transbrasafreight.com.br
+          mail_variation: logistics@transbrasa-freight.com.br
+          previous_name: RotaBrasa Cargo
+          previous_mail: info@rotabrasacargo.com.br
+
+        - name: BioVida HealthTech
+          mail: hello@biovidahealth.com.br
+          mail_variation: research@biovida-healthtech.com.br
+          previous_name: PharmaNatural Solutions
+          previous_mail: contact@pharmanatural-sol.com.br
+
+        - name: EcoWave Sustainability
+          mail: services@ecowavesust.com.br
+          mail_variation: info@eco-wave-sust.com.br
+          previous_name: BioCiclo Technologies
+          previous_mail: team@biociclotec.com.br
+
+        - name: AzulTec Digital
+          mail: support@azultecdigital.com.br
+          mail_variation: hello@azul-tech-digital.com.br
+          previous_name: TecBrasa Systems
+          previous_mail: support@tecbrasasys.com.br
+
+        - name: AgroNorte AgroTech
+          mail: contact@agronorteagro.com.br
+          mail_variation: sales@agronorte-agrotech.com.br
+          previous_name: NorteAgro Supplies
+          previous_mail: info@norteagrosupplies.com.br
+
+        - name: Lumina Creative Studio
+          mail: design@luminacreative.com.br
+          mail_variation: creative@luminacreative-studio.com.br
+          previous_name: LuzArte Design
+          previous_mail: contact@luzartedesign.com.br
+
+        - name: VerdeFlora Outdoor Solutions
+          mail: contact@verdefloraoutdoor.com.br
+          mail_variation: info@verde-flora-outdoor.com.br
+          previous_name: FloraVerde Landscaping
+          previous_mail: hello@floraverdeland.com.br
+
+        - name: SãoPaulo Industrial Supplies
+          mail: tools@saopauloindustrialsupplies.com.br
+          mail_variation: sales@spi-industrial.com.br
+          previous_name: SP Industrial Tech
+          previous_mail: info@sp-industrialtech.com.br
+
+        - name: PuraMar Seafood Exports
+          mail: sales@puramarexports.com.br
+          mail_variation: contact@pura-mar-seafood.com.br
+          previous_name: MarPuro Fisheries
+          previous_mail: hello@marpurofisheries.com.br
+
+        - name: InovaMed Health Devices
+          mail: support@inovamedhealth.com.br
+          mail_variation: devices@inovamed-healthdev.com.br
+          previous_name: MedBrasa Diagnostics
+          previous_mail: contact@medbrasadiag.com.br
+
+        - name: RioBrasa Metalworks
+          mail: info@riobrasametal.com.br
+          mail_variation: sales@rio-brasa-metal.com.br
+          previous_name: AçoBrasa Steel Solutions
+          previous_mail: contact@acobrasasteel.com.br
+
+        - name: TerraNova Properties
+          mail: info@terranovaproperties.com.br
+          mail_variation: sales@terra-nova-properties.com.br
+          previous_name: NovaTerra Real Estate
+          previous_mail: contact@novaterrareal.com.br
+
+        - name: EcoBrasa Renewable Energy
+          mail: contact@ecobrasarenew.com.br
+          mail_variation: info@eco-brasa-energy.com.br
+          previous_name: BioBrasa Renewables
+          previous_mail: hello@biobrasa-renew.com.br
+
+        - name: IntegraData Analytics
+          mail: support@integradataanalytics.com.br
+          mail_variation: contact@integra-data-analytics.com.br
+          previous_name: DataLink Solutions
+          previous_mail: info@datalinksolutions.com.br
+
+        - name: BrasaLuz Electrical Solutions
+          mail: sales@brasaluzelectrical.com.br
+          mail_variation: contact@brasa-luz-electrical.com.br
+          previous_name: LuzBrasa Lighting Tech
+          previous_mail: hello@luzbrasalight.com.br
+
+        - name: TopMar Engineering
+          mail: projects@topmarengineering.com.br
+          mail_variation: contact@top-mar-eng.com.br
+          previous_name: MarTop Infrastructure
+          previous_mail: info@martopinfra.com.br
+
+        - name: CaféNorte Coffee Imports
+          mail: hello@cafenorteimports.com.br
+          mail_variation: info@cafe-norte-imports.com.br
+          previous_name: NorteCafé Beans
+          previous_mail: sales@nortecafebeans.com.br
+
+        - name: VivaSabor Gourmet
+          mail: info@vivasaborgourmet.com.br
+          mail_variation: hello@viva-sabor-gourmet.com.br
+          previous_name: SaborVivo Fine Foods
+          previous_mail: contact@saborvivofoods.com.br
+
+    - locale: nl_NL
+      country_code: NL
+      country_name: Netherlands
+      phone: 31
+      language: NL
+      currency: EUR
+      companies:
+        - name: GreenFlow Energy Solutions
+          mail: contact@greenflowenergy.nl
+          mail_variation: info@greenflow-energy.nl
+          previous_name: FlowRenew Energy
+          previous_mail: support@flowrenew.nl
+
+        - name: Innovacell Biotech
+          mail: info@innovacell.nl
+          mail_variation: support@innovacell-biotech.nl
+          previous_name: CellTech Innovations
+          previous_mail: contact@celltech.nl
+
+        - name: DutchFreight Logistics
+          mail: contact@dutchfreight.nl
+          mail_variation: logistics@dutch-freight.nl
+          previous_name: Holland Transport Solutions
+          previous_mail: info@hollandtransports.nl
+
+        - name: BioMedica Pharmaceuticals
+          mail: hello@biomedica.nl
+          mail_variation: research@biomedica-pharma.nl
+          previous_name: DutchPharma Solutions
+          previous_mail: contact@dutchpharma.nl
+
+        - name: BlueWave Environmental Services
+          mail: services@bluewave.nl
+          mail_variation: info@blue-wave-services.nl
+          previous_name: EcoDutch Solutions
+          previous_mail: support@ecodutch.nl
+
+        - name: RedShift Technologies
+          mail: support@redshifttech.nl
+          mail_variation: hello@redshift-tech.nl
+          previous_name: ShiftTech Innovations
+          previous_mail: support@shifttech.nl
+
+        - name: AgroNL Distributors
+          mail: contact@agronl.nl
+          mail_variation: sales@agro-nl.nl
+          previous_name: NL AgriTech
+          previous_mail: info@nlagritech.nl
+
+        - name: LightStudio Design Agency
+          mail: design@lightstudio.nl
+          mail_variation: creative@light-studio.nl
+          previous_name: BrightVision Creatives
+          previous_mail: contact@brightvisioncreatives.nl
+
+        - name: GreenScape Landscaping
+          mail: contact@greenscape.nl
+          mail_variation: info@green-scape.nl
+          previous_name: EcoLand Projects
+          previous_mail: hello@ecolandprojects.nl
+
+        - name: Amsterdam Industrial Equipment
+          mail: tools@amsterdamindustrial.nl
+          mail_variation: sales@ai-tools.nl
+          previous_name: Amsterdam Tech Equip
+          previous_mail: info@amsterdamtechequip.nl
+
+        - name: DutchOcean Seafood
+          mail: sales@dutchocean.nl
+          mail_variation: contact@dutch-ocean.nl
+          previous_name: Holland Seafoods
+          previous_mail: hello@hollandseafoods.nl
+
+        - name: MedTech Innovations
+          mail: support@medtechinnovations.nl
+          mail_variation: devices@medtech-innovations.nl
+          previous_name: HealthTech Netherlands
+          previous_mail: contact@healthtechnl.nl
+
+        - name: Rotterdam Steelworks
+          mail: info@rotterdamsteel.nl
+          mail_variation: sales@rotterdamsteelworks.nl
+          previous_name: DutchSteel Industries
+          previous_mail: contact@dutchsteel.nl
+
+        - name: NovaTerra Real Estate
+          mail: info@novaterra.nl
+          mail_variation: sales@nova-terra.nl
+          previous_name: TerraDutch Properties
+          previous_mail: contact@terradutchproperties.nl
+
+        - name: GreenEco Biofuels
+          mail: contact@greencobiofuels.nl
+          mail_variation: info@greeneco-biofuels.nl
+          previous_name: EcoBio Energy
+          previous_mail: hello@ecobioenergy.nl
+
+        - name: InnoData Solutions
+          mail: support@innodatasolutions.nl
+          mail_variation: contact@inno-data.nl
+          previous_name: DataVision NL
+          previous_mail: info@datavisionnl.nl
+
+        - name: BrightLUX Lighting Solutions
+          mail: sales@brightlux.nl
+          mail_variation: contact@brightlux-lighting.nl
+          previous_name: LuxTech Systems
+          previous_mail: hello@luxtechsystems.nl
+
+        - name: TopBuild Construction
+          mail: projects@topbuild.nl
+          mail_variation: contact@top-build.nl
+          previous_name: BuildTop Projects
+          previous_mail: info@buildtop.nl
+
+        - name: CaféDelta Roasters
+          mail: hello@cafedelta.nl
+          mail_variation: info@cafe-delta.nl
+          previous_name: DeltaCafé Roasts
+          previous_mail: sales@deltacafe.nl
+
+        - name: FoodVerse Gourmet
+          mail: info@foodverse.nl
+          mail_variation: hello@food-verse.nl
+          previous_name: DutchGourmet Foods
+          previous_mail: contact@dutchgourmet.nl
+
+        - name: VanDerMeer Furniture Manufacturing
+          mail: info@vandermeerfurniture.nl
+          mail_variation: sales@vandermeer.nl
+          previous_name: MeerWood Furniture Co.
+          previous_mail: contact@meerwoodfurniture.nl
+
+        - name: Jansen & Zoon Construction
+          mail: info@jansenzoon.nl
+          mail_variation: sales@jansenzoonconstruction.nl
+          previous_name: Jansen Builders
+          previous_mail: info@jansenbuilders.nl
+
+        - name: Rotterdam Metalworks
+          mail: sales@rotterdammw.nl
+          mail_variation: info@rotterdammw-metal.nl
+          previous_name: Dutch Metal Industries
+          previous_mail: contact@dutchmetalindustries.nl
+
+        - name: Bosch & Vermeer Carpentry
+          mail: info@boschvermeer.nl
+          mail_variation: sales@bosch-vermeer.nl
+          previous_name: Vermeer Woodworks
+          previous_mail: info@vermeerwoodworks.nl
+
+        - name: Linde Gas Supplies
+          mail: info@lindegassupplies.nl
+          mail_variation: support@lindegas.nl
+          previous_name: Linde Industrial Gases
+          previous_mail: contact@lindeindustrial.nl
+
+        - name: VanDeBelt Shipping
+          mail: contact@vandebeltshipping.nl
+          mail_variation: info@vande-beltshipping.nl
+          previous_name: BeltTrans Maritime
+          previous_mail: support@belttransmaritime.nl
+
+        - name: DeGroot Printing Solutions
+          mail: contact@degrootprint.nl
+          mail_variation: info@degrootprinting.nl
+          previous_name: Groot Printing Co.
+          previous_mail: sales@grootprinting.nl
+
+        - name: Hollander Paper Mills
+          mail: info@hollanderpaper.nl
+          mail_variation: sales@hollander-paper.nl
+          previous_name: Dutch Paper Mills
+          previous_mail: contact@dutchpapermills.nl
+
+        - name: Amsterdam Iron Works
+          mail: info@amsterdamironworks.nl
+          mail_variation: sales@amsterdamiron.nl
+          previous_name: IronTech NL
+          previous_mail: contact@irontechnl.nl
+
+        - name: Klaver Bakery Supplies
+          mail: sales@klaverbakery.nl
+          mail_variation: info@klaver-bakery.nl
+          previous_name: Klaver Pastries Co.
+          previous_mail: hello@klaverpastries.nl
+
+        - name: Bosch & Co. Electrical Installations
+          mail: info@boschandco.nl
+          mail_variation: sales@boschco.nl
+          previous_name: Bosch Electrical Services
+          previous_mail: contact@bosch-electrical.nl
+
+        - name: VanHolland Textile Mills
+          mail: info@vanhollandtextile.nl
+          mail_variation: sales@vanholland-textiles.nl
+          previous_name: HollandTextiles
+          previous_mail: contact@hollandtextiles.nl
+
+        - name: VanLaar Automobiles
+          mail: sales@vanlaarauto.nl
+          mail_variation: info@vanlaar-automobiles.nl
+          previous_name: Laar Motors
+          previous_mail: contact@laarmotors.nl
+
+        - name: Vermeer & Zoon Machine Tools
+          mail: info@vermeermachine.nl
+          mail_variation: sales@vermeer-tools.nl
+          previous_name: ZoonTech Machine Tools
+          previous_mail: info@zoontech.nl
+
+        - name: DeHaan Industrial Supplies
+          mail: contact@dehaanindustrial.nl
+          mail_variation: sales@dehaan-industrial.nl
+          previous_name: HaanTech Supplies
+          previous_mail: info@haantech.nl
+
+        - name: VanEden Carpets & Rugs
+          mail: info@vanedenrugs.nl
+          mail_variation: sales@van-edenrugs.nl
+          previous_name: Eden Carpets Co.
+          previous_mail: hello@edencarpets.nl
+
+        - name: Waal & Co. Mechanical Works
+          mail: info@waalco.nl
+          mail_variation: sales@waal-mechanical.nl
+          previous_name: Waal Engineering Co.
+          previous_mail: contact@waalengineering.nl
+
+        - name: VanLoo Wholesale Groceries
+          mail: contact@vanloogroceries.nl
+          mail_variation: sales@van-loo.nl
+          previous_name: LooGrocer Wholesale
+          previous_mail: support@loogrocer.nl
+
+        - name: DeKoning Building Supplies
+          mail: sales@dekoningbuilding.nl
+          mail_variation: info@dekoning-supplies.nl
+          previous_name: Koning Construction Supplies
+          previous_mail: info@koningconstruction.nl
+
+        - name: NederWoon Furniture Imports
+          mail: info@nederwoonfurniture.nl
+          mail_variation: sales@nederwoon.nl
+          previous_name: WoonImports NL
+          previous_mail: contact@woonimports.nl
+
+more:
+  - locale: ja_JP
+    country_code: JP
+    country_name: Japan
+    phone: 81
+    language: JA
+    currency: JPY
+  - locale: ko_KR
+    country_code: KR
+    country_name: South Korea
+    phone: 82
+    language: KO
+    currency: KRW
+  - locale: en_AU
+    country_code: AU
+    country_name: Australia
+    phone: 61
+    language: EN
+    currency: AUD
+
+  - locale: sv_SE
+    country_code: SE
+    country_name: Sweden
+    phone: 46
+    language: SV
+    currency: SEK
+  - locale: tr_TR
+    country_code: TR
+    country_name: Turkey
+    phone: 90
+    language: TR
+    currency: TRY
+  - locale: es_MX
+    country_code: MX
+    country_name: Mexico
+    phone: 52
+    language: ES
+    currency: MXN
+  - locale: de_AT
+    country_code: AT
+    country_name: Austria
+    phone: 43
+    language: DE
+    currency: EUR
+  - locale: en_CA
+    country_code: CA
+    country_name: Canada
+    phone: 1
+    language: EN
+    currency: CAD
+  - locale: en_ZA
+    country_code: ZA
+    country_name: South Africa
+    phone: 27
+    language: EN
+    currency: ZAR
+  - locale: th_TH
+    country_code: TH
+    country_name: Thailand
+    phone: 66
+    language: TH
+    currency: THB
+  - locale: pl_PL
+    country_code: PL
+    country_name: Poland
+    phone: 48
+    language: PL
+    currency: PLN
+  - locale: id_ID
+    country_code: ID
+    country_name: Indonesia
+    phone: 62
+    language: ID
+    currency: IDR

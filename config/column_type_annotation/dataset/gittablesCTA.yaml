@@ -1,0 +1,7 @@
+dataset_name: "gittablesCTA"
+
+# dataset-specific configuration goes here
+
+url: "https://zenodo.org/api/records/5706316/files-archive"
+
+ontology: "dbpedia"  # "dbpedia" or "schema"

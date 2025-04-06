@@ -1,0 +1,8 @@
+prompt_chat_template:
+  - role: "user"
+    content: |-
+      Your task is to detect duplicates in a customer database. 
+      Please answer with yes or no (without any explanations), if the following two rows refer to the same customer (note: the format may differ slightly between the rows).
+      First row: {{company_A_row}} Second row: {{company_B_row}}
+
+

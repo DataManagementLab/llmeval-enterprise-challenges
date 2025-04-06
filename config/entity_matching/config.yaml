@@ -1,0 +1,62 @@
+defaults:
+  - dataset: ~
+  - _self_
+
+task_name: "entity_matching"
+exp_name: ~
+
+# task-specific configuration goes here
+
+###############
+# preprocessing
+###############
+
+limit_instances: null
+
+shuffle_columns: true  # shuffle the columns of the second table
+rename_columns: true  # use the alternative names specified in the dataset-specific yaml files
+
+##################
+# prepare requests
+##################
+
+linearize_table:
+  template: "{{table}}"
+  mode: "csv"
+  csv_params:
+    index: false
+    header: true
+  markdown_params:
+    index: false
+
+sample_examples:
+  num_examples: 1  # 1 means one positive and one negative example
+
+prompt_chat_template:
+  - role: "user"
+    content: |-
+      Do the two table entries refer to the same real-world entity?
+      Answer with "Yes" if they do and with "No" if they do not.
+  - "{{examples}}"
+  - role: "user"
+    content: "First entry: {{first_table_row}} Second entry: {{second_table_row}}"
+
+example_chat_template:
+  - role: "user"
+    content: "First entry: {{first_table_row}} Second entry: {{second_table_row}}"
+  - role: "assistant"
+    content: "{{ground_truth}}"
+
+max_tokens_over_ground_truth: 100  # null means max_tokens will be set to null
+model: ~
+temperature: 0
+
+##################
+# execute requests
+##################
+
+api_name: ~
+
+############
+# evaluation
+############

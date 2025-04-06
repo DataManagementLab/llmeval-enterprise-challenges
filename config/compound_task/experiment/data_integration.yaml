@@ -1,0 +1,24 @@
+prompt_chat_template_merge:
+  - role: "user"
+    content: |-
+      Two companies have customer data that should be merged and the following two rows of data have been found to refer to the same customer.
+      Please merge the two rows into one data point, resolving any conflicts in a sensible way and following the structure of Company A's data.
+      Return the resulting output table (header and row) in csv format with ; as the delimiter without any explanation.
+      Your output must be parsable by pandas.
+
+  - role: "user"
+    content: "Company A data: {{company_A_row}} Company B data: {{company_B_row}}"
+
+
+prompt_chat_template_transform:
+  - role: "user"
+    content: |-
+      The customer data from company B has been roughly brought into the schema of company A. 
+      However some of the fields are not yet filled or formatted correctly.
+      Please return the row from company B to the format of the data in company A.
+      Here are three example rows from company A {{company_A_table}}.
+      Set the customer ID to xxx.
+      Return the resulting output table (header and row) in csv format with ; as the delimiter without any explanation.
+      Your output must be parsable by pandas.
+  - role: "user"
+    content: "Company B data row: {{company_B_row}}"

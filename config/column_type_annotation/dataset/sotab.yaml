@@ -1,0 +1,9 @@
+dataset_name: "sotab"
+
+# dataset-specific configuration goes here
+
+train_url: "https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CTA_Training.zip"
+val_url: "https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CTA_Validation.zip"
+test_url: "https://data.dws.informatik.uni-mannheim.de/structureddata/sotab/CTA_Test.zip"
+
+

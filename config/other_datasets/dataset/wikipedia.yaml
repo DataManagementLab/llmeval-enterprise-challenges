@@ -1,0 +1,5 @@
+dataset_name: "wikipedia"
+
+# dataset-specific configuration goes here
+
+name: "20220301.en"

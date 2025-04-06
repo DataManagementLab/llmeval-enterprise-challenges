@@ -1,0 +1,7 @@
+dataset_name: "sportstables"
+
+# dataset-specific configuration goes here
+
+url: "git@github.com:DHBWMosbachWI/SportsTables.git"
+
+sports: [ "baseball", "basketball", "football", "hockey", "soccer" ]

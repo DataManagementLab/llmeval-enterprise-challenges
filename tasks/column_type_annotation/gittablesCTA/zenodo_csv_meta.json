@@ -1,0 +1,1050 @@
+{
+  "files": [
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/abstraction_csv_licensed.zip"
+      },
+      "checksum": "md5:1e06ff3385d131f40376f5eacfd24f7d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "abstraction_csv_licensed.zip",
+      "type": "zip",
+      "size": 47147853
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/allegro_con_spirito_csv_licensed.zip"
+      },
+      "checksum": "md5:034899e6c6cbecfec39caac1c8c6f04d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "allegro_con_spirito_csv_licensed.zip",
+      "type": "zip",
+      "size": 974150
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/attrition_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:23af68213ed5ed03e228bb8229a046d9",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "attrition_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 2209958
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/beats_per_minute_csv_licensed.zip"
+      },
+      "checksum": "md5:e1c143b593c9dbe056a76ed5f44a4cc3",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "beats_per_minute_csv_licensed.zip",
+      "type": "zip",
+      "size": 6118413
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/beauty_sleep_csv_licensed.zip"
+      },
+      "checksum": "md5:805e97f391bffb7245455f4c1fc8fee4",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "beauty_sleep_csv_licensed.zip",
+      "type": "zip",
+      "size": 14267259
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/bits_per_second_csv_licensed.zip"
+      },
+      "checksum": "md5:62fc22e740671b090ab4fc386b5c6e8f",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "bits_per_second_csv_licensed.zip",
+      "type": "zip",
+      "size": 52589212
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/cardiac_output_csv_licensed.zip"
+      },
+      "checksum": "md5:a0bbda6568a656c74b402065104d2179",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "cardiac_output_csv_licensed.zip",
+      "type": "zip",
+      "size": 1782022
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/cease_csv_licensed.zip"
+      },
+      "checksum": "md5:7547944516a434056cc3f63489a67f61",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "cease_csv_licensed.zip",
+      "type": "zip",
+      "size": 12609475
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/centripetal_acceleration_csv_licensed.zip"
+      },
+      "checksum": "md5:7400ac003c18c3179497a03f63dd1c85",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "centripetal_acceleration_csv_licensed.zip",
+      "type": "zip",
+      "size": 3766219
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/channel_capacity_csv_licensed.zip"
+      },
+      "checksum": "md5:91a543a596ff89860b8fb8dd9c6957db",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "channel_capacity_csv_licensed.zip",
+      "type": "zip",
+      "size": 13542853
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/clotting_time_csv_licensed.zip"
+      },
+      "checksum": "md5:322d978120bac0b460e0004b15034bac",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "clotting_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 373414
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/command_processing_overhead_time_csv_licensed.zip"
+      },
+      "checksum": "md5:3d8985c371bfdd8e638ac9c9cd79946e",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "command_processing_overhead_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 3281968
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/count_per_minute_csv_licensed.zip"
+      },
+      "checksum": "md5:8eb99948b1401b54d53dba0b8bec9a6f",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "count_per_minute_csv_licensed.zip",
+      "type": "zip",
+      "size": 19097745
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/crime_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:dd4e9c5b8403afad4e4d8e429030f977",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "crime_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 40395947
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/data_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:239887356d91e43c49fc1de243c9c179",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "data_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 242216189
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/dead_air_csv_licensed.zip"
+      },
+      "checksum": "md5:e307a1d9cf19ac8573b37f23fc93b38c",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "dead_air_csv_licensed.zip",
+      "type": "zip",
+      "size": 70991572
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/dogwatch_csv_licensed.zip"
+      },
+      "checksum": "md5:3daa725f5d9be62d0bf4e71d2254cda7",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "dogwatch_csv_licensed.zip",
+      "type": "zip",
+      "size": 1760620
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/dose_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:777e114ecfdf0a2eb9b8069b5e9e03a8",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "dose_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 9814274
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/dwarf_csv_licensed.zip"
+      },
+      "checksum": "md5:73d305d08468f8e0a6fb99e9ef82da3d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "dwarf_csv_licensed.zip",
+      "type": "zip",
+      "size": 14234129
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/entr%27acte_csv_licensed.zip"
+      },
+      "checksum": "md5:8f23a38a7b7f874548db30bdb9977344",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "entr'acte_csv_licensed.zip",
+      "type": "zip",
+      "size": 958713
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/episcopate_csv_licensed.zip"
+      },
+      "checksum": "md5:4af11e5fbabdcfe782f91f9598aac3f9",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "episcopate_csv_licensed.zip",
+      "type": "zip",
+      "size": 1199105
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/erythrocyte_sedimentation_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:8e6a95655fd34adf8befa6db50984553",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "erythrocyte_sedimentation_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 3244198
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/escape_velocity_csv_licensed.zip"
+      },
+      "checksum": "md5:05a6081589dacefc853dd8ce1dc1088d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "escape_velocity_csv_licensed.zip",
+      "type": "zip",
+      "size": 13410106
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/fertile_period_csv_licensed.zip"
+      },
+      "checksum": "md5:d8ec894c9d7f99e98f52e752ac2042fb",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "fertile_period_csv_licensed.zip",
+      "type": "zip",
+      "size": 1290763
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/graveyard_watch_csv_licensed.zip"
+      },
+      "checksum": "md5:26f0109dcd5601fafa7a9d966a1745ff",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "graveyard_watch_csv_licensed.zip",
+      "type": "zip",
+      "size": 1312512
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/growth_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:77d0bfd5c9485e7ab91f9ac037c166bb",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "growth_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 96844624
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/half_life_csv_licensed.zip"
+      },
+      "checksum": "md5:de2fe399ae9953c8b126c1f1ab88cbcc",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "half_life_csv_licensed.zip",
+      "type": "zip",
+      "size": 225828003
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/halftime_csv_licensed.zip"
+      },
+      "checksum": "md5:e2a2996cdcef6318bcce42f4e3af08c9",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "halftime_csv_licensed.zip",
+      "type": "zip",
+      "size": 1124341
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/heterotroph_csv_licensed.zip"
+      },
+      "checksum": "md5:745fe57effb1336c5b697bb4cb5c309c",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "heterotroph_csv_licensed.zip",
+      "type": "zip",
+      "size": 372570
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/hypervelocity_csv_licensed.zip"
+      },
+      "checksum": "md5:a18ff8e31189dc8a56bc604d1ae70ebe",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "hypervelocity_csv_licensed.zip",
+      "type": "zip",
+      "size": 1699704
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/id_csv_licensed.zip"
+      },
+      "checksum": "md5:989e0c5722d1a25096823811567abd94",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "id_csv_licensed.zip",
+      "type": "zip",
+      "size": 247171586
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/incubation_period_csv_licensed.zip"
+      },
+      "checksum": "md5:d87f40b8f05b5354c685e2154a18a0ba",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "incubation_period_csv_licensed.zip",
+      "type": "zip",
+      "size": 3346577
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/indiction_csv_licensed.zip"
+      },
+      "checksum": "md5:25008681459a2ca8d82479996542e591",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "indiction_csv_licensed.zip",
+      "type": "zip",
+      "size": 341001
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/inflation_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:3f509ef7153a48436fefec6c668ed384",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "inflation_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 26439743
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/interim_csv_licensed.zip"
+      },
+      "checksum": "md5:c65d159e2ffb8b08ee6e219882a6368b",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "interim_csv_licensed.zip",
+      "type": "zip",
+      "size": 8222144
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/in_time_csv_licensed.zip"
+      },
+      "checksum": "md5:45baa5b838b92de5ed8b6d264fb1d952",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "in_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 29941567
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/kilohertz_csv_licensed.zip"
+      },
+      "checksum": "md5:ba3755bde48e32d72cfb56f483375d17",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "kilohertz_csv_licensed.zip",
+      "type": "zip",
+      "size": 3026531
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/kilometers_per_hour_csv_licensed.zip"
+      },
+      "checksum": "md5:1e837ae656a92d26fe9b498885c51d2f",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "kilometers_per_hour_csv_licensed.zip",
+      "type": "zip",
+      "size": 828310
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/lapse_csv_licensed.zip"
+      },
+      "checksum": "md5:a00caf663f09bb96b85fb84fbf12011b",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "lapse_csv_licensed.zip",
+      "type": "zip",
+      "size": 4473940
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/last_gasp_csv_licensed.zip"
+      },
+      "checksum": "md5:f15571fd03d7e0304bd969a23e2eb958",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "last_gasp_csv_licensed.zip",
+      "type": "zip",
+      "size": 3995707
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/latent_period_csv_licensed.zip"
+      },
+      "checksum": "md5:dc1fba2b1822e3c34106afe47ab69ab2",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "latent_period_csv_licensed.zip",
+      "type": "zip",
+      "size": 1385977
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/lead_time_csv_licensed.zip"
+      },
+      "checksum": "md5:c544f4bdeae8fdb865b5df841e7e4756",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "lead_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 208162090
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/living_thing_csv_licensed.zip"
+      },
+      "checksum": "md5:cbf066faf692464aaebf8bc7321c7e60",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "living_thing_csv_licensed.zip",
+      "type": "zip",
+      "size": 242074499
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/lunitidal_interval_csv_licensed.zip"
+      },
+      "checksum": "md5:76cdb2bad9582d23c1f6f4d868218d6c",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "lunitidal_interval_csv_licensed.zip",
+      "type": "zip",
+      "size": 22
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/meno_mosso_csv_licensed.zip"
+      },
+      "checksum": "md5:88d93c3ab537464361ba10863f4192d1",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "meno_mosso_csv_licensed.zip",
+      "type": "zip",
+      "size": 1183713
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/menstrual_cycle_csv_licensed.zip"
+      },
+      "checksum": "md5:5bc29d0123855d72dfe3d59cd9e16cbd",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "menstrual_cycle_csv_licensed.zip",
+      "type": "zip",
+      "size": 278073
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/metabolic_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:1656bd103c2199454043e03d8adf6156",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "metabolic_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 2331545
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/miles_per_hour_csv_licensed.zip"
+      },
+      "checksum": "md5:3e902baa45ee6f455ac343261383cf9d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "miles_per_hour_csv_licensed.zip",
+      "type": "zip",
+      "size": 21183865
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/multistage_csv_licensed.zip"
+      },
+      "checksum": "md5:2e891dce67d8c19602b15fe49c65127d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "multistage_csv_licensed.zip",
+      "type": "zip",
+      "size": 459601
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/musth_csv_licensed.zip"
+      },
+      "checksum": "md5:b5563638dcd73571cc11c284182c0279",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "musth_csv_licensed.zip",
+      "type": "zip",
+      "size": 564009
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/neonatal_mortality_csv_licensed.zip"
+      },
+      "checksum": "md5:3cda388f6075bf3eb372a1e5211c073f",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "neonatal_mortality_csv_licensed.zip",
+      "type": "zip",
+      "size": 375113
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/object_csv_licensed.zip"
+      },
+      "checksum": "md5:5f62bec3890296d1052c9ad005a6fcb2",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "object_csv_licensed.zip",
+      "type": "zip",
+      "size": 267885612
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/orbit_period_csv_licensed.zip"
+      },
+      "checksum": "md5:0bd299a3baf69ede73a98ab828917e37",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "orbit_period_csv_licensed.zip",
+      "type": "zip",
+      "size": 7070060
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/organism_csv_licensed.zip"
+      },
+      "checksum": "md5:03b052af96d713f98baa0ea1fb4416a1",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "organism_csv_licensed.zip",
+      "type": "zip",
+      "size": 9577283
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/parent_csv_licensed.zip"
+      },
+      "checksum": "md5:a599c0ecd1a95112c740004c4b710ded",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "parent_csv_licensed.zip",
+      "type": "zip",
+      "size": 527589184
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/peacetime_csv_licensed.zip"
+      },
+      "checksum": "md5:bf29eaa3323e43517725c19114314fbf",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "peacetime_csv_licensed.zip",
+      "type": "zip",
+      "size": 232710
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/peculiar_velocity_csv_licensed.zip"
+      },
+      "checksum": "md5:1a3f1d9dbf00b49f8f9130b20f99667f",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "peculiar_velocity_csv_licensed.zip",
+      "type": "zip",
+      "size": 590981
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/physical_entity_csv_licensed.zip"
+      },
+      "checksum": "md5:cee0336923df999dba944f060f0abccd",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "physical_entity_csv_licensed.zip",
+      "type": "zip",
+      "size": 19470019
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/processing_time_csv_licensed.zip"
+      },
+      "checksum": "md5:b28a2bb530db8f92508502256897ead4",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "processing_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 143974275
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/question_time_csv_licensed.zip"
+      },
+      "checksum": "md5:05edf8ade9dee1bc8904b116db9cd2b1",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "question_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 399481974
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/quick_time_csv_licensed.zip"
+      },
+      "checksum": "md5:54f166e977a278d689ebd1844ed2311f",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "quick_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 209853548
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/radial_pulse_csv_licensed.zip"
+      },
+      "checksum": "md5:6337fd6af7775a5c21d968afdf66f4af",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "radial_pulse_csv_licensed.zip",
+      "type": "zip",
+      "size": 161348
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/radial_velocity_csv_licensed.zip"
+      },
+      "checksum": "md5:9a06af5b5dbbb1b9f34e43a33ae701bf",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "radial_velocity_csv_licensed.zip",
+      "type": "zip",
+      "size": 292375
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/rainy_day_csv_licensed.zip"
+      },
+      "checksum": "md5:c4db67673ccbdacbf429ad014754de06",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "rainy_day_csv_licensed.zip",
+      "type": "zip",
+      "size": 6501274
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/rate_of_return_csv_licensed.zip"
+      },
+      "checksum": "md5:16c66ae4848f5a1fbb3bb85f2bf6329b",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "rate_of_return_csv_licensed.zip",
+      "type": "zip",
+      "size": 100190471
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/reaction_time_csv_licensed.zip"
+      },
+      "checksum": "md5:4d4020a69cbf3667e02d8344b14b63bf",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "reaction_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 87679207
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/real_time_csv_licensed.zip"
+      },
+      "checksum": "md5:81c198cfd3afe489c7632f99084572c7",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "real_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 477880122
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/relaxation_time_csv_licensed.zip"
+      },
+      "checksum": "md5:a1be673feb8841c31cd3babc2a7b1aa5",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "relaxation_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 8503867
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/respiratory_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:8c9df2d68a3c0be97dd80650741b2184",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "respiratory_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 3784032
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/return_on_invested_capital_csv_licensed.zip"
+      },
+      "checksum": "md5:a5e6362fd4da8861c7920cf04de03940",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "return_on_invested_capital_csv_licensed.zip",
+      "type": "zip",
+      "size": 7147782
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/revolutions_per_minute_csv_licensed.zip"
+      },
+      "checksum": "md5:6bf31bcccc57a01fed205bb6656595e3",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "revolutions_per_minute_csv_licensed.zip",
+      "type": "zip",
+      "size": 1112665
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/rotational_latency_csv_licensed.zip"
+      },
+      "checksum": "md5:8dd6008ae442ec9d83fec3e621970d0d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "rotational_latency_csv_licensed.zip",
+      "type": "zip",
+      "size": 10856048
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/running_time_csv_licensed.zip"
+      },
+      "checksum": "md5:c28d35889acb36c11d12be853f939caf",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "running_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 306830095
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/safe_period_csv_licensed.zip"
+      },
+      "checksum": "md5:db85a8d647c7656b03ea51b2818ee9c6",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "safe_period_csv_licensed.zip",
+      "type": "zip",
+      "size": 59959245
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/sampling_frequency_csv_licensed.zip"
+      },
+      "checksum": "md5:e3ccccd87d49777f6156af4ecd31a854",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "sampling_frequency_csv_licensed.zip",
+      "type": "zip",
+      "size": 2502261
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/sampling_rate_csv_licensed.zip"
+      },
+      "checksum": "md5:5d40644e3ba4c74ee63740730d331eae",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "sampling_rate_csv_licensed.zip",
+      "type": "zip",
+      "size": 17252668
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/secretory_phase_csv_licensed.zip"
+      },
+      "checksum": "md5:401787dc488aff8e114f473a734a6dde",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "secretory_phase_csv_licensed.zip",
+      "type": "zip",
+      "size": 2229880
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/seek_time_csv_licensed.zip"
+      },
+      "checksum": "md5:4966650d1edd546361458eaa7a987f27",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "seek_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 110974939
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/shiva_csv_licensed.zip"
+      },
+      "checksum": "md5:2e0ab8643eeaf6e7e81c147be5711de0",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "shiva_csv_licensed.zip",
+      "type": "zip",
+      "size": 5492097
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/show_time_csv_licensed.zip"
+      },
+      "checksum": "md5:48e18d1dbf053ffa1c9f570d28f1b56b",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "show_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 429826666
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/solar_constant_csv_licensed.zip"
+      },
+      "checksum": "md5:12e9e2cae05c59d7d89f5df78ac7608f",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "solar_constant_csv_licensed.zip",
+      "type": "zip",
+      "size": 10253023
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/speed_of_light_csv_licensed.zip"
+      },
+      "checksum": "md5:45a96b7d174f5840ae0d93e7bc89ff92",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "speed_of_light_csv_licensed.zip",
+      "type": "zip",
+      "size": 81426940
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/split_shift_csv_licensed.zip"
+      },
+      "checksum": "md5:8a70270297e853bea7dfea76c4457a3e",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "split_shift_csv_licensed.zip",
+      "type": "zip",
+      "size": 18684186
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/steerageway_csv_licensed.zip"
+      },
+      "checksum": "md5:80349e077c0918c63625b25487bed7b9",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "steerageway_csv_licensed.zip",
+      "type": "zip",
+      "size": 34560
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/stopping_point_csv_licensed.zip"
+      },
+      "checksum": "md5:bf03a70fef6bf06378dd6151cde33a6d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "stopping_point_csv_licensed.zip",
+      "type": "zip",
+      "size": 39930843
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/terminal_velocity_csv_licensed.zip"
+      },
+      "checksum": "md5:c5ac7e0035d037263633b8200aa6ddf5",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "terminal_velocity_csv_licensed.zip",
+      "type": "zip",
+      "size": 6382148
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/terminus_ad_quem_csv_licensed.zip"
+      },
+      "checksum": "md5:ca0cafe862b925c67875fdb06b738cc5",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "terminus_ad_quem_csv_licensed.zip",
+      "type": "zip",
+      "size": 1538454
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/then_csv_licensed.zip"
+      },
+      "checksum": "md5:983a571724cd5c5daefdfe780bd7bff7",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "then_csv_licensed.zip",
+      "type": "zip",
+      "size": 571847495
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/thing_csv_licensed.zip"
+      },
+      "checksum": "md5:5185673b8fab646e639069cd13e5c09b",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "thing_csv_licensed.zip",
+      "type": "zip",
+      "size": 583817081
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/time_interval_csv_licensed.zip"
+      },
+      "checksum": "md5:0cdabfd6c7c9e62b41fc43818599b994",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "time_interval_csv_licensed.zip",
+      "type": "zip",
+      "size": 17965718
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/time-out_csv_licensed.zip"
+      },
+      "checksum": "md5:80ff83552255e0671861b58de5f51594",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "time-out_csv_licensed.zip",
+      "type": "zip",
+      "size": 475338
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/time_slot_csv_licensed.zip"
+      },
+      "checksum": "md5:02baa50033089d2b0d86d05541de68a0",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "time_slot_csv_licensed.zip",
+      "type": "zip",
+      "size": 12482082
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/track-to-track_seek_time_csv_licensed.zip"
+      },
+      "checksum": "md5:76cdb2bad9582d23c1f6f4d868218d6c",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "track-to-track_seek_time_csv_licensed.zip",
+      "type": "zip",
+      "size": 22
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/usance_csv_licensed.zip"
+      },
+      "checksum": "md5:3e8049fb4fcbe63d9495ddd390a265af",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "usance_csv_licensed.zip",
+      "type": "zip",
+      "size": 930238
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/wartime_csv_licensed.zip"
+      },
+      "checksum": "md5:d78261a66bd415ec95809802e79b615d",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "wartime_csv_licensed.zip",
+      "type": "zip",
+      "size": 2654169
+    },
+    {
+      "links": {
+        "self": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f/whole_csv_licensed.zip"
+      },
+      "checksum": "md5:5178ec0a5f60f8d2db16fdd76163b587",
+      "bucket": "2a8285d2-3449-4098-855f-3298891fe64f",
+      "key": "whole_csv_licensed.zip",
+      "type": "zip",
+      "size": 472466969
+    }
+  ],
+  "owners": [
+    233685
+  ],
+  "doi": "10.5281/zenodo.6515973",
+  "stats": {
+    "version_unique_downloads": 163.0,
+    "unique_views": 343.0,
+    "views": 427.0,
+    "version_views": 427.0,
+    "unique_downloads": 163.0,
+    "version_unique_views": 343.0,
+    "volume": 169612582984.0,
+    "version_downloads": 2380.0,
+    "downloads": 2380.0,
+    "version_volume": 169612582984.0
+  },
+  "links": {
+    "doi": "https://doi.org/10.5281/zenodo.6515973",
+    "conceptdoi": "https://doi.org/10.5281/zenodo.6515972",
+    "bucket": "https://zenodo.org/api/files/2a8285d2-3449-4098-855f-3298891fe64f",
+    "conceptbadge": "https://zenodo.org/badge/doi/10.5281/zenodo.6515972.svg",
+    "html": "https://zenodo.org/record/6515973",
+    "latest_html": "https://zenodo.org/record/6515973",
+    "badge": "https://zenodo.org/badge/doi/10.5281/zenodo.6515973.svg",
+    "latest": "https://zenodo.org/api/records/6515973"
+  },
+  "conceptdoi": "10.5281/zenodo.6515972",
+  "created": "2022-05-03T21:52:48.521910+00:00",
+  "updated": "2022-06-06T12:49:41.955184+00:00",
+  "conceptrecid": "6515972",
+  "revision": 6,
+  "id": 6515973,
+  "metadata": {
+    "access_right_category": "success",
+    "doi": "10.5281/zenodo.6515973",
+    "description": "<p><strong>This dataset contains &gt;800K CSV files behind the GitTables 1M corpus.</strong></p>\n\n<p>For more information about&nbsp;the GitTables corpus, visit:</p>\n\n<p>- our&nbsp;<a href=\"https://gittables.github.io\">website for GitTables</a>, or</p>\n\n<p>- the&nbsp;<a href=\"http://zenodo.org/record/6517052\">main GitTables download page on Zenodo</a>.</p>",
+    "license": {
+      "id": "CC0-1.0"
+    },
+    "title": "GitTables 1M - CSV files",
+    "relations": {
+      "version": [
+        {
+          "count": 1,
+          "index": 0,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "6515972"
+          },
+          "is_last": true,
+          "last_child": {
+            "pid_type": "recid",
+            "pid_value": "6515973"
+          }
+        }
+      ]
+    },
+    "version": "0.0.1",
+    "publication_date": "2022-05-03",
+    "creators": [
+      {
+        "affiliation": "University of Amsterdam",
+        "name": "Madelon Hulsebos"
+      },
+      {
+        "affiliation": "Sigma Computing",
+        "name": "\u00c7a\u011fatay Demiralp"
+      },
+      {
+        "affiliation": "University of Amsterdam",
+        "name": "Paul Groth"
+      }
+    ],
+    "access_right": "open",
+    "resource_type": {
+      "type": "dataset",
+      "title": "Dataset"
+    },
+    "related_identifiers": [
+      {
+        "scheme": "doi",
+        "identifier": "10.5281/zenodo.6515972",
+        "relation": "isVersionOf"
+      }
+    ]
+  }
+}

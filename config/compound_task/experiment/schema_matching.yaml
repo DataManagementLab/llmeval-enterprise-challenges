@@ -1,0 +1,12 @@
+prompt_chat_template:
+  - role: "user"
+    content: |-
+      Imagine that data should be integrated from a customer table from one database into the customer table of another company.
+      Here are three rows from Company A's table: {{company_A_table}}
+      And here three rows from Company B's table: {{company_B_table}}
+      Please answer with yes or no (without any explanations), whether the information (or part of it) in the column of company B corresponds to information in the column of company A:
+
+  - role: "user"
+    content: "Company A column: {{company_A_column}} Company B column: {{company_B_column}}"
+
+

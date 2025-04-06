@@ -1,0 +1,29 @@
+defaults:
+  - dataset: ~
+  - experiment: ~
+  - _self_
+
+task_name: "compound_task"
+exp_name: ~
+api_name: ~
+
+sub_dataset: ~
+
+#########################################################
+##       Experiments: parameters
+#########################################################
+
+linearize_table:
+  template: "{{table_name}}{{newline}}{{table}}"
+  mode: "csv"
+  csv_params:
+    index: false
+    header: true
+    sep: ";"
+  markdown_params:
+    index: false
+
+
+max_tokens_over_ground_truth: 100  # null means max_tokens will be set to null
+model: ~
+temperature: 0
