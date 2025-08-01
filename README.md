@@ -9,6 +9,41 @@ study of their impact on recent LLMs for data engineering. Our analysis reveals 
 in real-world enterprise scenarios, resulting in significant accuracy drops. Our findings contribute to a systematic
 understanding of LLMs for enterprise data engineering to support their adoption in industry.**
 
+## Data Availability & Reproducibility
+
+### Column Type Annotation
+
+We publish an adapted version of the [SportsTables](https://github.com/DHBWMosbachWI/SportsTables) dataset where we 
+introduce all enterprise data challenges (C1-C4) from the paper. The dataset consists of 100 tables annotated with 
+semantic column types. We publish five versions of it: one for each of the challenges C1-C4 and one that 
+incorporates all challenges.
+
+Download: `datasets/adapted-sportstables-cta.zip`
+
+### Enterprise Entity Matching (+errors, +multi-matches, +multiple tables)
+
+We publish our payment-to-invoice matching dataset in multiple versions, each consisting of the payment and invoice 
+tables and a table with the ground-truth matching information. There are versions with up to one or multiple errors per 
+match, and versions with descriptive, non-descriptive, and multi-table schemas.
+
+Download: `datasets/payment-to-invoice-matching.zip`
+
+### Enterprise Data Integration (Compound Task)
+
+We publish our enterprise data integration dataset, consisting of the input tables from Company A and Company B, the 
+ground truth output table of the data integration, and the ground truths of the intermediate steps (schema matching 
+and entity matching). The dataset has different sizes with versions between 50 and 300 customers.
+
+Download: `datasets/enterprise-data-integration.zip`
+
+### Text-to-SIGNAL
+
+We publish our Text-to-SIGNAL dataset of NL-SIGNAL pairs, each including the natural language user request and the
+corresponding ground truth SIGNAL query. We also publish all SIGNAL queries generated in our experiments, as well as 
+our annotated error types for each query. Also included are the documentation and few-shot examples used in our prompts.
+
+Download: `datasets/text-to-signal.zip`
+
 ## Experiments
 
 Please find our prompt templates and example prompts in `PROMPTS.md`!
