@@ -6,7 +6,7 @@ import pandas as pd
 import tiktoken
 from hydra.core.config_store import ConfigStore
 
-from llms4de.data import get_task_dir, get_experiments_path, dump_str
+from llms4de.data import get_experiments_path, dump_str
 
 logger = logging.getLogger(__name__)
 

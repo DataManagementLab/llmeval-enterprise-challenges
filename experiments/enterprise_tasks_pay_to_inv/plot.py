@@ -6,7 +6,7 @@ import pandas as pd
 from hydra.core.config_store import ConfigStore
 from matplotlib import pyplot as plt
 
-from llms4de.data import dump_str, get_experiments_path
+from llms4de.data import get_experiments_path
 from llms4de.plotting.colors import hatch, color, sort_idx
 from llms4de.plotting.plot import save_plt, prepare_plt, SUBPLOTS_ADJUST, grouped_bar_offsets, VALUE_FONT_SIZE, \
     VALUE_PAD, make_score_yaxis, grouped_bar_xlim_padding, LEGEND_Y, LEGEND_X, LEGEND_Y_LOW, TOP_TEXT_Y
@@ -25,24 +25,6 @@ ConfigStore.instance().store(name="config", node=Config)
 
 @hydra.main(version_base=None, config_name="config")
 def main(cfg: Config) -> None:
-    ####################################################################################################################
-    # F1 scores at increasing difficulties
-    ####################################################################################################################
-
-    table = pd.read_csv(
-        get_experiments_path() / "enterprise_tasks_pay_to_inv" / "tasks_pay_to_inv_increasing_difficulty.csv",
-        index_col="model"
-    )
-    table.sort_index(key=lambda x: x.map(sort_idx), inplace=True)
-    table = table.map(score)
-    table.reset_index(inplace=True)
-    table["model"] = table["model"].apply(text)
-    latex = table.to_latex(column_format="l" + "r" * (len(table.columns) - 1), index=False)
-    latex_lines = latex.splitlines()
-    latex_lines[2] = " & ".join(r"\textbf{" + part + "}" for part in latex_lines[2][:-3].split(" & ")) + r" \\"
-    latex = "\n".join(latex_lines)
-    dump_str(latex,
-             get_experiments_path() / "enterprise_tasks_pay_to_inv" / "tasks_pay_to_inv_increasing_difficulty.tex")
 
     ####################################################################################################################
     # precision and recall for +multi-matches scenario

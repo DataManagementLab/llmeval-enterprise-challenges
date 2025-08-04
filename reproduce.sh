@@ -36,3 +36,10 @@ bash experiments/enterprise_knowledge_text2signal/run.sh
 bash experiments/enterprise_knowledge_schema_prediction/run.sh
 bash experiments/costs_imdb_wikipedia_enterprisetables/run.sh  # must run after the CTA experiments
 bash experiments/enterprise_challenges_cta/run.sh  # must run after the CTA experiments
+
+# additional experiments
+bash experiments/enterprise_data_sampling_ablations_cta/run.sh
+bash experiments/enterprise_data_rows_ablations_cta/run.sh
+bash experiments/enterprise_data_task_mode_ablations_cta/run.sh
+bash experiments/enterprise_data_variability_ablations_cta/run.sh
+bash experiments/enterprise_data_enterprisetables_cta_pub/run.sh

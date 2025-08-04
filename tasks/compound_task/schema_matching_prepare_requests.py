@@ -47,7 +47,7 @@ def main(cfg: DictConfig) -> None:
         except FileNotFoundError as e:
             continue
         # skipt ground truth
-        if not "col_A" in instance_data:
+        if instance_data is None or not "col_A" in instance_data:
             continue
         request = create_request(cfg=cfg, instance_data=instance_data)
         dump_json(request, requests_dir / f"{request_idx}.json")

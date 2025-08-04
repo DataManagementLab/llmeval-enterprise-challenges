@@ -22,8 +22,10 @@ def text(name: str) -> str:
         return "GPT-4o"
     elif "o1" in name:
         return "o1"
-    elif "claude-3-5-sonnet" in name:
+    elif "claude-3-5-sonnet-20240620" in name:
         return "Claude 3.5 Sonnet"
+    elif "claude-3-5-sonnet-20241022" in name:
+        return "Claude 3.5 Sonnet (v2)"
     elif "llama" in name and "instruct" in name and ("3.1" in name or "3-1" in name):
         return "Llama 3.1 Instruct"
 

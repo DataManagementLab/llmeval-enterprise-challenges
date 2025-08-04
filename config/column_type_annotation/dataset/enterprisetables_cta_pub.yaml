@@ -1,0 +1,77 @@
+dataset_name: "enterprisetables_cta_pub"
+
+# dataset-specific configuration goes here
+
+url: "git@github.com:DHBWMosbachWI/SportsTables.git"
+
+sports: [ "baseball", "basketball", "football", "hockey", "soccer" ]
+
+
+adapt_num_rows: 5
+adapt_max_cost: 20
+adapt_force: 20.0
+
+adapt_width: false
+target_width_alpha: 2
+target_width_beta: 10
+target_width_exponent: 1.75
+target_width_multiplier: 1500
+adapt_width_model: "gpt-4o-2024-08-06"
+adapt_width_api_name: "openai"
+adapt_width_temperature: 0
+adapt_width_model_seed: 744389220719
+adapt_width_generate_column_names_chat_template:
+  - role: "system"
+    content: "You are an expert table augmentor who, given a table, generates new data with extremely similar characteristics. For the column names, make sure to use a similar style, mixture of abbreviations/non-abbreviations etc. For the data values, mimic the distribution of data types, the syntax of the values, etc."
+  - role: "user"
+    content: "Here is a table about sports:{{newline}}{{newline}}{{table}}{{newline}}{{newline}}Generate unique column names for {{num_new_columns}} additional columns to augment this table. Use new column names that do not appear in the original table but are very similar in nature (for example, some should be 1-2 letter abbreviations and some should not be abbreviated). Output only the names of the additional columns as a JSON list without any explanation."
+adapt_width_generate_data_chunk_size: 20
+adapt_width_generate_data_chat_template:
+  - role: "system"
+    content: "You are an expert table augmentor who, given a table, generates new data with extremely similar characteristics. For the column names, make sure to use a similar style, mixture of abbreviations/non-abbreviations etc. For the data values, mimic the distribution of data types, the syntax of the values, etc."
+  - role: "user"
+    content: "Here is a table about sports:{{newline}}{{newline}}{{table}}{{newline}}{{newline}}Generate a table with the given list of additional column names and {{num_example_rows}} example data rows to augment the given table. The generated data should closely resemble the data in the given table in terms of data types, syntax, etc. Do not generate 0.0 excessively, instead be creative with the values. Output only the new table (not including the existing columns) in CSV format without any explanation.{{newline}}{{newline}}The new table should have these columns: {{new_column_names}}"
+
+adapt_descriptiveness: false
+adapt_descriptiveness_model: "gpt-4o-2024-08-06"
+adapt_descriptiveness_api_name: "openai"
+adapt_descriptiveness_temperature: 0
+adapt_descriptiveness_model_seed: 744389220719
+adapt_descriptiveness_table_name_to_german_chat_template:
+  - role: "system"
+    content: "You are a tabular data expert who adapts table schemas (table names) to fit into existing databases."
+  - role: "user"
+    content: "Here is the table name of a table about sports: \"{{table_name}}\"{{newline}}{{newline}}Translate the table name into a descriptive German table name that consists of multiple words in snake case (e.g. \"Basketball_Statistik_2024\"). Output only the translated column name in the following JSON object: {\"german_table_name\": \"<the-translated-german-table-name>\"} without any explanations."
+adapt_descriptiveness_to_german_chunk_size: 20
+adapt_descriptiveness_to_german_chat_template:
+  - role: "system"
+    content: "You are a tabular data expert who adapts table schemas (column names) to fit into existing databases."
+  - role: "user"
+    content: "Here is a table about sports:{{newline}}{{newline}}{{table}}{{newline}}{{newline}}Translate the column names of the given table into descriptive German column names that consist of multiple words in snake case (e.g. \"Sportler_Name\"). Output only the list of translated column names as a JSON list without any explanations."
+adapt_descriptiveness_table_name_to_abbreviation_chat_template:
+  - role: "system"
+    content: "You are a tabular data expert who adapts table schemas (table names) to fit into existing databases."
+  - role: "user"
+    content: "Here is the German table name of a table about sports: \"{{german_table_name}}\"{{newline}}{{newline}}Please transform the descriptive German table name into a 4-letter abbreviation (e.g. \"Basketball_Statistik_2024\" could be \"BAST\"). Do not use the letters ÖÄÜ. Output only the abbreviated table name in the following JSON object: {\"abbreviated_table_name\": \"<the-abbreviated-table-name>\"} without any explanations."
+adapt_descriptiveness_to_abbreviation_chunk_size: 50
+adapt_descriptiveness_to_abbreviation_chat_template:
+  - role: "system"
+    content: "You are a tabular data expert who adapts table schemas (column names) to fit into existing databases."
+  - role: "user"
+    content: "Here is a list of German column names of a table about sports:{{newline}}{{newline}}{{german_column_names}}{{newline}}{{newline}}Please transform the descriptive German column names into unique 5-letter abbreviations (e.g. \"Sportler_Name\" could be \"SPONA\"). Do not use the letters ÖÄÜ. Output only the list of abbreviated column names as a JSON list without any explanations."
+
+adapt_data_types: false
+adapt_data_types_model: "gpt-4o-2024-08-06"
+adapt_data_types_api_name: "openai"
+adapt_data_types_temperature: 0
+adapt_data_types_model_seed: 744389220719
+adapt_data_types_chunk_size: 20
+adapt_data_types_chat_template:
+  - role: "system"
+    content: "You are a tabular data expert who adapts tabular data."
+  - role: "user"
+    content: "Here is a table about sports:{{newline}}{{newline}}{{table}}{{newline}}{{newline}}Transform the data values of the given table.{{newline}}{{newline}}For columns containing explicit values like names, you can replace them with numerical or alpha-numerical ids. Be consistent within each column!{{newline}}{{newline}}For columns containing numerical values, the goal is to transform most of them so that they are string values. For example, you could apply the following transformations:{{newline}}{{newline}}- Replace the numerical value 10.0 with the string \"10,0\" or even \"10-0\" or \"10|0\" or \"10 0\" Make sure to properly escape values and format them as strings. Do this often.{{newline}}- Add a letter and leading zeros to a numerical value, for example transform the Yards column value 10.0 to \"Y0010.0\" or the Age column value 34 to \"A034\" so that all values in the column are padded to the same number of characters. Do this sometimes.{{newline}}- Drop the decimal point, for example transforming 10.0 into 100.{{newline}}- Add a unit, for example transforming 10.0 into the string \"10.0 f\" or \"10.0p\". Be creative with the units, but use abbreviations only{{newline}}- Transform the numerical value into hexadecimal format and pad to a fixed number of digits in the column, for example transforming 26.0 into \"0x001a\". Do this only very rarely.{{newline}}- Leave the value as is. {{newline}}{{newline}}For either type of column, you can also replace all values with a dummy value denoting the absence of an actual value, like \"null\", \"000\" (properly escape as string), or \"missing\" (be creative, but use the same value for the entire column). Do not apply this transformation if you have already applied a different transformation to the column! Overall, apply this very sparingly!{{newline}}{{newline}}The resulting table should be a good mixture of different transformations applied to different columns. Do not apply the same transformation to all columns, instead try to apply multiple transformations to different columns! In all cases, it is extremely important that you are consistent within each column (applying one transformation to all values of the columns), but apply different transformations to different columns. Don't just prepend the column name to the values! First, plan which transformation to apply to which column in a list of bullet points. Then, return the transformed result table in CSV format in a ```csv<table here>```block."
+
+adapt_sparsity: false
+target_col_sparsity: 0.35
+target_cell_sparsity: 0.43

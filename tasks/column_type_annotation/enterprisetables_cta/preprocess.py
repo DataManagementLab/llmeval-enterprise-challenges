@@ -188,7 +188,7 @@ def main(cfg: DictConfig) -> None:
                 dump_json(data_types, instance_dir / "data_types.json")
 
                 ix += 1
-                if ix == cfg.limit_instances and cfg.task_mode == "all":
+                if ix == cfg.limit_instances and (cfg.task_mode == "all" or cfg.task_mode == "chunking"):
                     break
 
     dump_cfg(cfg, instances_dir / "config.cfg")

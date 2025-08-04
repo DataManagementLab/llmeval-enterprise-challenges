@@ -77,8 +77,7 @@ def main(cfg: Config) -> None:
         assert len(res.index) == 1
         res = res.iloc[0]
         confusion = res["clean_confusion_by_match_category"]["one_pay_one_inv"]
-        table.at[
-            model, "initial data"] = confusion.f1_score
+        table.at[model, "initial data"] = [confusion.f1_score, confusion.bootstrap_f1_score_standard_error()]
 
         # + errors
         res = all_res.loc[
@@ -89,8 +88,7 @@ def main(cfg: Config) -> None:
         assert len(res.index) == 1
         res = res.iloc[0]
         confusion = res["dirty_confusion_by_match_category"]["one_pay_one_inv"]
-        table.at[
-            model, "+ errors"] = confusion.f1_score
+        table.at[model, "+ errors"] = [confusion.f1_score, confusion.bootstrap_f1_score_standard_error()]
 
         # + multi-matches
         res = all_res.loc[
@@ -102,8 +100,7 @@ def main(cfg: Config) -> None:
         res = res.iloc[0]
         confusion = res["dirty_confusion_by_match_category"]["one_pay_multi_inv"]
         confusion = confusion + res["dirty_confusion_by_match_category"]["multi_pay_one_inv"]
-        table.at[
-            model, "+ multi-matches"] = confusion.f1_score
+        table.at[model, "+ multi-matches"] = [confusion.f1_score, confusion.bootstrap_f1_score_standard_error()]
 
         # + multiple tables
         res = all_res.loc[
@@ -115,8 +112,7 @@ def main(cfg: Config) -> None:
         res = res.iloc[0]
         confusion = res["dirty_confusion_by_match_category"]["one_pay_multi_inv"]
         confusion = confusion + res["dirty_confusion_by_match_category"]["multi_pay_one_inv"]
-        table.at[
-            model, "+ multiple tables"] = confusion.f1_score
+        table.at[model, "+ multiple tables"] = [confusion.f1_score, confusion.bootstrap_f1_score_standard_error()]
 
     table.index.name = "model"
     table.to_csv(get_experiments_path() / "enterprise_tasks_pay_to_inv" / "tasks_pay_to_inv_increasing_difficulty.csv")

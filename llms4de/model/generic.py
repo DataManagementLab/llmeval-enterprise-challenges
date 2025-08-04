@@ -1,8 +1,12 @@
 import copy
 import logging
 import os
+import time
+from typing import Literal
 
 import requests
+
+from llms4de.model._openai import openai_model
 
 logger = logging.getLogger(__name__)
 
@@ -117,19 +121,30 @@ def num_tokens(
                 raise AssertionError("missing `ANTHROPIC_API_KEY` in environment variables")
             if text == "":
                 return 0
-            http_response = requests.post(
-                url="https://api.anthropic.com/v1/messages/count_tokens",
-                json={
-                    "model": model,
-                    "messages": [{"role": "user", "content": text}]
-                },
-                headers={
-                    "content-type": "application/json",
-                    "x-api-key": f"{os.environ['ANTHROPIC_API_KEY']}",
-                    "anthropic-version": "2023-06-01"
-                }
-            )
-            return max(1, http_response.json()["input_tokens"] - 7)  # there seem to be 7 'structural' tokens
+
+            while True:
+                before = time.time()
+                http_response = requests.post(
+                    url="https://api.anthropic.com/v1/messages/count_tokens",
+                    json={
+                        "model": model,
+                        "messages": [{"role": "user", "content": text}]
+                    },
+                    headers={
+                        "content-type": "application/json",
+                        "x-api-key": f"{os.environ['ANTHROPIC_API_KEY']}",
+                        "anthropic-version": "2023-06-01"
+                    }
+                )
+                after = time.time()
+                time.sleep(max(0.0, (60 / 4_000 - (after - before)) * 1.1))
+                match http_response.status_code:
+                    case 200:
+                        return max(1,
+                                   http_response.json()["input_tokens"] - 7)  # there seem to be 7 'structural' tokens
+                    case _:
+                        logger.warning(f"anthropic count tokens request failed, retry: `{http_response.content}`")
+
         case "ollama":
             import tokenizers
             if "HF_TOKEN" not in os.environ.keys():
@@ -186,7 +201,9 @@ def max_tokens_for_ground_truth(
 
 def execute_requests(
         requests: list[dict],
-        api_name: str
+        api_name: str,
+        *,
+        force: float | None | Literal["default"] = "default"
 ) -> list[dict]:
     """Execute the list of requests against the specified API.
 
@@ -197,21 +214,23 @@ def execute_requests(
     Returns:
         The list of API responses.
     """
+    if force == "default":
+        force = FORCE
     match api_name:
         case "openai":
             from llms4de.model import _openai
-            return _openai.openai_execute(requests, force=FORCE)
+            return _openai.openai_execute(requests, force=force)
         case "anthropic":
             from llms4de.model import _anthropic
             requests = [prepare_for_anthropic(request) for request in requests]
-            return _anthropic.anthropic_execute(requests, force=FORCE)
+            return _anthropic.anthropic_execute(requests, force=force)
         case "ollama":
             from llms4de.model import _ollama
             requests = [prepare_for_ollama(request) for request in requests]
             return _ollama.ollama_execute(requests)
         case "aicore":
             from llms4de.model import _aicore
-            return _aicore.aicore_execute(requests, force=FORCE)
+            return _aicore.aicore_execute(requests, force=force)
         case _:
             raise AssertionError(f"unknown api_name `{api_name}`")
 
@@ -278,3 +297,13 @@ def extract_finish_reason_from_response(response: dict) -> str | None:
                 raise AssertionError(f"unknown aws bedrock stopReason `{response['stopReason']}`")
     else:
         return None
+
+
+def compute_cost_for_response(response: dict) -> float:
+    if "choices" in response.keys():  # OpenAI response
+        model_info = openai_model(response["model"])
+        return response["usage"]["prompt_tokens"] * model_info["cost_per_1k_input_tokens"] / 1_000 \
+            + response["usage"]["completion_tokens"] * model_info["cost_per_1k_output_tokens"] / 1_000
+    else:
+        logger.warning(f"unknown response, count as cost=0 `{response}`")
+        return 0

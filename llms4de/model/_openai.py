@@ -337,6 +337,8 @@ def openai_execute(
                                             case 429:
                                                 pair.status = "open"
                                                 progress_bar.update_postfix()  # not done -> update only postfix
+                                                logger.info("sleep for 30 seconds")
+                                                time.sleep(30)
                                             case _:
                                                 pair.status = "done"
                                                 progress_bar.failed += 1

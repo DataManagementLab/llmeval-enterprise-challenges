@@ -55,6 +55,7 @@ def main(cfg: DictConfig) -> None:
 
             shutil.copy(old_instance_path / "table_name.txt", instance_path / "table_name.txt")
             shutil.copy(old_instance_path / "table.csv", instance_path / "table.csv")
+            shutil.copy(old_instance_path / "column_types.json", instance_path / "column_types.json")
             dump_json(index, instance_path / "index.json")
             column_types = load_json(old_instance_path / "column_types.json")
             dump_json(column_types[index], instance_path / "column_type.json")

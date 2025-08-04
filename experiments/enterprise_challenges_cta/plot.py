@@ -26,6 +26,10 @@ ConfigStore.instance().store(name="config", node=Config)
 
 @hydra.main(version_base=None, config_name="config")
 def main(cfg: Config) -> None:
+    ####################################################################################################################
+    # F1 scores for different enterprise challenge scenarios
+    ####################################################################################################################
+
     res = pd.read_csv(
         get_experiments_path() / "enterprise_challenges_cta" / "f1_scores.csv",
         header=[0, 1],

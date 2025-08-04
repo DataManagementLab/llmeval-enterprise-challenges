@@ -1,1 +1,0 @@
-# Enterprise Data - Sparsity and Table Width in CTA

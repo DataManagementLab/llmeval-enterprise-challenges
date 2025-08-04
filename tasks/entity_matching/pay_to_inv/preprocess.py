@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import random
+import statistics
 from pathlib import Path
 
 import hydra
@@ -82,6 +83,9 @@ def main(cfg: DictConfig) -> None:
     negative_instances = []
 
     # loop through all true matches
+    all_involved_invoice_ids, all_involved_payment_ids = set(), set()
+    all_in_match_invoice_ids, all_in_match_payment_ids = set(), set()
+    nums_invoices_in_match, nums_payments_in_match = [], []
     for _, match in tqdm.tqdm(matches.iterrows(),
                               desc=f"{cfg.task_name} - {cfg.dataset.dataset_name} - {cfg.exp_name} - preprocess",
                               total=len(matches.index)):
@@ -90,6 +94,8 @@ def main(cfg: DictConfig) -> None:
 
         invoice_ids = json.loads(match["invoice_ids"])
         payment_ids = json.loads(match["payment_ids"])
+        nums_invoices_in_match.append(len(invoice_ids))
+        nums_payments_in_match.append(len(payment_ids))
         if cfg.dataset.schema_mode == "multi-table":
             payments["payment_id"] = payments["payment_id"].apply(
                 lambda x: ast.literal_eval(x) if isinstance(x, str) else x)
@@ -98,6 +104,7 @@ def main(cfg: DictConfig) -> None:
 
         # save match as instance
         for invoice_id in invoice_ids:
+            all_involved_invoice_ids.add(invoice_id)
             instance_dir = instances_dir / f"{ix}"
             os.makedirs(instance_dir, exist_ok=True)
 
@@ -116,6 +123,9 @@ def main(cfg: DictConfig) -> None:
 
             # loop through all payment ids of the match (is only 1 for 1:1 row matches)
             for payment_id in payment_ids:
+                all_involved_payment_ids.add(payment_id)
+                all_in_match_invoice_ids.add(invoice_id)
+                all_in_match_payment_ids.add(payment_id)
                 instance_dir = instances_dir / f"{ix}"
                 os.makedirs(instance_dir, exist_ok=True)
 
@@ -141,6 +151,7 @@ def main(cfg: DictConfig) -> None:
                 invoice_id = _random.choice(list(set(all_invoice_ids) - set(invoice_ids)))
             else:
                 invoice_id = _random.choice(list(set(invoices[0]["invoice_id"].to_list()) - set(invoice_ids)))
+            all_involved_invoice_ids.add(invoice_id)
             save_source_rows(invoices_tables=invoices, invoice_id=invoice_id, instance_dir=instance_dir)
             target_row = payments[payments["payment_id"] == payment_id]
             target_row.drop("payment_id", axis=1, inplace=True)
@@ -152,6 +163,13 @@ def main(cfg: DictConfig) -> None:
             negative_instances.append(ix)
             ix += 1
 
+    logger.info(f"{len(all_involved_invoice_ids)} invoices and {len(all_involved_payment_ids)} payments")
+    logger.info(
+        f"{statistics.mean(nums_invoices_in_match)} invoices per match and {statistics.mean(nums_payments_in_match)} payments per match")
+    logger.info(
+        f"{(len(all_involved_invoice_ids) - len(all_in_match_invoice_ids)) / len(all_involved_invoice_ids)} invoices not in any match")
+    logger.info(
+        f"{(len(all_involved_payment_ids) - len(all_in_match_payment_ids)) / len(all_involved_payment_ids)} payments not in any match")
     dump_json({"positive": positive_instances, "negative": negative_instances}, instances_dir / "examples_pos_neg.json")
     dump_cfg(cfg, instances_dir / "config.cfg")
     logger.info(f"Saved {len(positive_instances)} positive and {len(negative_instances)} negative instances!")

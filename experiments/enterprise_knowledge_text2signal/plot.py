@@ -212,7 +212,7 @@ def main(cfg: Config) -> None:
     pad = grouped_bar_xlim_padding(1, bar_width, 0.3)
     axis[1].set_xlim((xs[0] - pad, xs[-1] + pad))
 
-    error_values = [58, 11, 5]
+    error_values = [50, 14, 11]
     for x, value in enumerate(error_values):
         axis[1].bar(
             x=[x + 1],

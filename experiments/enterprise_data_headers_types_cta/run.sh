@@ -16,26 +16,21 @@ datasets=(
 models=(
 "gpt-4o-mini-2024-07-18"
 "gpt-4o-2024-08-06"
-"claude-3-5-sonnet-20241022"
+"claude-3-5-sonnet-20240620"
 "llama3.1:70b-instruct-fp16"
 )
 
 declare -A api_names
 api_names["gpt-4o-mini-2024-07-18"]="openai"
 api_names["gpt-4o-2024-08-06"]="openai"
-api_names["claude-3-5-haiku-20241022"]="anthropic"
 api_names["claude-3-5-sonnet-20241022"]="anthropic"
 api_names["claude-3-5-sonnet-20240620"]="anthropic"
-api_names["llama3.1:8b-instruct-fp16"]="ollama"
 api_names["llama3.1:70b-instruct-fp16"]="ollama"
 
 declare -A enterprise_api_names
 enterprise_api_names["gpt-4o-mini-2024-07-18"]="aicore"
 enterprise_api_names["gpt-4o-2024-08-06"]="aicore"
-enterprise_api_names["claude-3-5-haiku-20241022"]="aicore"
-enterprise_api_names["claude-3-5-sonnet-20241022"]="aicore"
 enterprise_api_names["claude-3-5-sonnet-20240620"]="aicore"
-enterprise_api_names["llama3.1:8b-instruct-fp16"]="aicore"
 enterprise_api_names["llama3.1:70b-instruct-fp16"]="aicore"
 
 for dataset in "${datasets[@]}"; do
@@ -75,4 +70,3 @@ for dataset in "${datasets[@]}"; do
 done
 
 python experiments/enterprise_data_headers_types_cta/gather.py
-python experiments/enterprise_data_headers_types_cta/plot.py

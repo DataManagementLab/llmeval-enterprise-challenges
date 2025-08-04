@@ -9,7 +9,7 @@ import pandas as pd
 import tiktoken
 from hydra.core.config_store import ConfigStore
 
-from llms4de.data import get_download_dir, load_str, get_experiments_path, dump_json
+from llms4de.data import get_download_dir, load_str, get_experiments_path, dump_json, get_instances_dir
 from llms4de.model._openai import openai_model
 
 logger = logging.getLogger(__name__)
@@ -32,10 +32,11 @@ ConfigStore.instance().store(name="config", node=Config)
 
 @hydra.main(version_base=None, config_name="config")
 def main(cfg: Config) -> None:
-    measure_imdb(cfg)
-    measure_wikipedia(cfg)
-    measure_enterprisetables(cfg)
-    measure_random_enterprisetables(cfg)
+    measure_enterprisetables_cta_pub(cfg)
+    # measure_imdb(cfg)
+    # measure_wikipedia(cfg)
+    # measure_enterprisetables_cta(cfg)
+    # measure_random_enterprisetables(cfg)
 
 
 def measure_imdb(cfg: Config) -> None:
@@ -59,7 +60,7 @@ def measure_imdb(cfg: Config) -> None:
         cost[model] = determine_cost(tokens[model], model)
 
     results = make_result_dataframe(num_bytes, tokens, cost)
-    results.to_csv(get_experiments_path() / "costs_imdb_wikipedia_enterprisetables" / "costs_imdb.csv")
+    results.to_csv(get_experiments_path() / "enterprise_costs" / "costs_imdb.csv")
 
 
 def measure_wikipedia(cfg: Config) -> None:
@@ -80,11 +81,36 @@ def measure_wikipedia(cfg: Config) -> None:
         cost[model] = determine_cost(tokens[model], model)
 
     results = make_result_dataframe(num_bytes, tokens, cost)
-    results.to_csv(get_experiments_path() / "costs_imdb_wikipedia_enterprisetables" / "costs_wikipedia.csv")
+    results.to_csv(get_experiments_path() / "enterprise_costs" / "costs_wikipedia.csv")
 
 
-def measure_enterprisetables(cfg: Config) -> None:
-    logger.info("measure enterprisetables dataset")
+def measure_enterprisetables_cta_pub(cfg: Config) -> None:
+    logger.info("measure enterprisetables_cta_pub dataset")
+    instances_dir = get_instances_dir("column_type_annotation", "enterprisetables_cta_pub",
+                                      "enterprise-data-headers-types-cta_gpt-4o-mini-2024-07-18_with-headers")
+    table_paths = list(sorted(instances_dir.glob("*/table.csv")))
+    logger.info(f"found {len(table_paths)} tables")
+
+    num_bytes = 0
+    tokens = collections.Counter()
+    cost = {}
+    for model in cfg.models:
+        logger.info(f"processing with model `{model}`")
+        num_bytes = 0
+        for path in table_paths:
+            logger.info(f"determine tokens for `{path.name}`")
+            encoding = tiktoken.encoding_for_model(model)
+            table_str = load_str(path)
+            table_chunks = [table_str[0 + i:cfg.tsv_chunk_len + i] for i in range(0, len(table_str), cfg.tsv_chunk_len)]
+            num_bytes += sum(map(lambda s: len(s.encode("utf-8")), table_chunks))
+            tokens[model] += sum(map(len, encoding.encode_batch(table_chunks, num_threads=cfg.num_threads)))
+        cost[model] = determine_cost(tokens[model], model)
+
+    results = make_result_dataframe(num_bytes, tokens, cost)
+    results.to_csv(get_experiments_path() / "enterprise_costs" / "costs_enterprisetables_cta_pub.csv")
+
+def measure_enterprisetables_cta(cfg: Config) -> None:
+    logger.info("measure enterprisetables_cta dataset")
     download_dir = get_download_dir("column_type_annotation", "enterprisetables_cta")
     table_paths = list(sorted(download_dir.glob("*.csv")))
 
@@ -104,7 +130,7 @@ def measure_enterprisetables(cfg: Config) -> None:
         cost[model] = determine_cost(tokens[model], model)
 
     results = make_result_dataframe(num_bytes, tokens, cost)
-    results.to_csv(get_experiments_path() / "costs_imdb_wikipedia_enterprisetables" / "costs_enterprisetables.csv")
+    results.to_csv(get_experiments_path() / "enterprise_costs" / "costs_enterprisetables_cta.csv")
 
 
 def measure_random_enterprisetables(cfg: Config) -> None:
@@ -142,10 +168,10 @@ def measure_random_enterprisetables(cfg: Config) -> None:
 
     results = make_result_dataframe(num_bytes, tokens, cost)
     results.to_csv(
-        get_experiments_path() / "costs_imdb_wikipedia_enterprisetables" / "costs_random_enterprisetables.csv")
+        get_experiments_path() / "enterprise_costs" / "costs_random_enterprisetables.csv")
     dump_json(
         {"number_of_cells": num_cells},
-        get_experiments_path() / "costs_imdb_wikipedia_enterprisetables" / "num_cells.json"
+        get_experiments_path() / "enterprise_costs" / "num_cells.json"
     )
 
 

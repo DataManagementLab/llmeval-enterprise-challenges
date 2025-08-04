@@ -143,7 +143,7 @@ def anthropic_execute(
             for pair in pairs_to_execute:
                 while True:
                     with semaphore:
-                        if context["num_counting"] < 200:  # max. num. of parallel count token requests
+                        if context["num_counting"] < 20:  # max. num. of parallel count token requests
                             context["num_counting"] = context["num_counting"] + 1
                             progress_bar.bottleneck = "P"
                             progress_bar.running = context["num_counting"]
@@ -271,7 +271,7 @@ def anthropic_execute(
                                                 progress_bar.failed += 1
                                                 progress_bar.update()
                                                 break
-                                    case "parallel" if context["num_running"] < 200:  # max. num. of parallel requests
+                                    case "parallel" if context["num_running"] < 20:  # max. num. of parallel requests
                                         logger.debug(f"parallel execution for `{pair.request.model}`: execute")
                                         progress_bar.bottleneck = "P"
 
@@ -445,22 +445,24 @@ class _Request:
 
     def count_tokens(self) -> requests.Response:
         req = {k: v for k, v in self.request.items() if k in {"messages", "model", "system", "tool_choice", "tools"}}
-        http_response = requests.post(
-            url="https://api.anthropic.com/v1/messages/count_tokens",
-            json=req,
-            headers={
-                "content-type": "application/json",
-                "x-api-key": f"{os.environ['ANTHROPIC_API_KEY']}",
-                "anthropic-version": "2023-06-01"
-            }
-        )
-
-        if http_response.status_code != 200:
-            logger.error(f"count_tokens error: {http_response.content}")
-            http_response.raise_for_status()
-            exit()
-
-        return http_response
+        while True:
+            before = time.time()
+            http_response = requests.post(
+                url="https://api.anthropic.com/v1/messages/count_tokens",
+                json=req,
+                headers={
+                    "content-type": "application/json",
+                    "x-api-key": f"{os.environ['ANTHROPIC_API_KEY']}",
+                    "anthropic-version": "2023-06-01"
+                }
+            )
+            after = time.time()
+            time.sleep(max(0.0, (60 / 4_000 - (after - before)) * 20 * 1.1))
+            match http_response.status_code:
+                case 200:
+                    return http_response
+                case _:
+                    logger.error(f"count_tokens error, retry: {http_response.content}")
 
     def execute(self) -> requests.Response:
         http_response = requests.post(

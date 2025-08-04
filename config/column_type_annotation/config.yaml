@@ -7,13 +7,16 @@ exp_name: ~
 
 # task-specific configuration goes here
 
-task_mode: "all"  # "all" or "lookup-index" or "lookup-header"
+task_mode: "all"  # "all" or "lookup-index" or "lookup-header" or "chunking"
+
+chunk_size: 2
 
 ###############
 # preprocessing
 ###############
 
 limit_instances: null
+limit_instances_chunking: null
 
 ##################
 # prepare requests

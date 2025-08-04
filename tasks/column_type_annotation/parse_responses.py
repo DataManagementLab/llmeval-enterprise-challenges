@@ -31,7 +31,7 @@ def main(cfg: DictConfig) -> None:
         if text_completion is None:
             logger.warning("api request failed")
             match cfg.task_mode:
-                case "all":
+                case "all" | "chunking":
                     dump_json(None, prediction_dir / "column_types.json")
                 case "lookup-index" | "lookup-header":
                     dump_json(None, prediction_dir / "column_type.json")
@@ -42,7 +42,7 @@ def main(cfg: DictConfig) -> None:
             continue
 
         match cfg.task_mode:
-            case "all":
+            case "all" | "chunking":
                 column_types = parse_list(text_completion, **cfg.parse_list)
                 if column_types is None:
                     logger.warning("parsing list failed")

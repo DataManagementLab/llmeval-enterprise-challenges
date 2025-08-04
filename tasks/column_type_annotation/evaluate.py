@@ -87,7 +87,7 @@ def main(cfg: DictConfig) -> None:
         prediction_dir = predictions_dir / instance_dir.name
 
         match cfg.task_mode:
-            case "all":
+            case "all" | "chunking":
                 pred_column_types = load_json(prediction_dir / "column_types.json")
                 if pred_column_types is None:
                     logger.warning("evaluation on failed prediction, interpret as empty list of column types")

@@ -136,7 +136,7 @@ def sample_rows(
         table: pd.DataFrame,
         *other_tables: pd.DataFrame,
         num_rows: int,
-        mode: Literal["random"] | Literal["full"]
+        mode: Literal["random"] | Literal["full"] | Literal["full_columns"]
 ) -> Union[pd.DataFrame, tuple[pd.DataFrame, ...]]:
     """Sample rows from a pd.DataFrame.
 
@@ -176,6 +176,19 @@ def sample_rows(
                 for df in l:
                     df.reset_index(drop=True, inplace=True)
                 return tuple(l)
+        case "full_columns":
+            assert not other_tables, "cannot use sampling mode `full_columns` if there are other_tables"
+            data = {}
+            for column in table.columns:
+                col_data = table[column].dropna().to_list()
+                sample_rows_random.shuffle(col_data)
+                col_data = col_data[:num_rows]
+                if len(col_data) < num_rows:
+                    logger.warning(
+                        f"there are fewer than num_rows={num_rows} non-NaN values in column `{column}`, fill with NaN")
+                    col_data = col_data + [None] * (num_rows - len(col_data))
+                data[column] = col_data
+            return pd.DataFrame(data)
         case _:
             raise AssertionError(f"invalid sample_rows mode `{mode}`")
 

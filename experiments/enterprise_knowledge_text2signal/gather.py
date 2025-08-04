@@ -37,19 +37,24 @@ def count_statuses(result):
             counts[status] = counts.get(status, 0) + 1
     return counts
 
-
+#config_path="../../config/text2signal", config_name="config.yaml"
 @hydra.main(version_base=None, config_name="config")
 def main(cfg: Config) -> None:
     # load all results
     all_exp_paths = list(
-        sorted(get_task_dir("text2signal").glob("signavio/experiments/enterprise-knowledge-text2signal*/")))
+        sorted(get_task_dir("signal_validation").glob("signavio/experiments/enterprise-knowledge-text2signal*/")))
+    #print(all_exp_paths)
     all_res = pd.DataFrame({"path": all_exp_paths})
+    #print("PATH", all_res["path"])
     all_res["cfg"] = all_res["path"].apply(lambda p: load_json(p / "results" / "config.cfg"))
+
+    print("LL", all_res[cfg])
     all_res["model"] = all_res["cfg"].apply(lambda cfg: cfg["model"])
     all_res["mode"] = all_res["cfg"].apply(lambda cfg: cfg["mode"])
     #  all_res["errors"] = all_res["path"].apply(lambda p: load_json(p / "results" / "errors.json"))
     all_res["results"] = all_res["path"].apply(lambda p: load_json(p / "results" / "results.json"))  #
     print(all_res)
+    all_res.to_csv("experiments/enterprise_knowledge_text2signal/all_signal_results.csv")
 
     # -----------------------------
     # 3. Expand the 'results' Column into Separate Count Columns
@@ -123,7 +128,7 @@ def main(cfg: Config) -> None:
 
     # Adjust the y-axis upper limit to provide extra space.
     max_stack = df_expanded[status_cols].sum(axis=1).max()
-    ax.set_ylim(0, max_stack * 1.2)
+   # ax.set_ylim(0, max_stack * 1.2)
 
     # Create the legend and move it further to the right.
     legend_elements = [Patch(facecolor=status_colors[s], label=s) for s in status_cols]

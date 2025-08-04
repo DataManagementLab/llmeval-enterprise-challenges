@@ -6,7 +6,7 @@ limit_instances=200
 models=(
 "gpt-4o-mini-2024-07-18"
 "gpt-4o-2024-08-06"
-"claude-3-5-sonnet-20241022"
+"claude-3-5-sonnet-20240620"
 "llama3.1:70b-instruct-fp16"
 )
 modes=(

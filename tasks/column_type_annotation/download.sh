@@ -15,6 +15,11 @@ for dataset in "${datasets[@]}"; do
         echo "for exact reproducibility, you must manually obtain \`data/column_type_annotation/sportstables/download\`"
         exit 1
     fi
+  elif [ "$dataset" == "enterprisetables_cta_pub" ]; then
+    if [ ! -d "data/column_type_annotation/enterprisetables_cta_pub/download" ]; then
+        echo "for exact reproducibility, you must manually obtain \`data/column_type_annotation/enterprisetables_cta_pub/download\`"
+        exit 1
+    fi
   elif [ "$dataset" == "wikitables-turl" ]; then
     if [ ! -d "data/column_type_annotation/wikitables-turl/download" ]; then
         echo "for exact reproducibility, you must manually obtain \`data/column_type_annotation/wikitables-turl/download\`"

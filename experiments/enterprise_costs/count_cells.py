@@ -52,7 +52,7 @@ def main(cfg: Config) -> None:
             "subset_num_tables": num_tables,
             "subset_num_cells": num_cells
         },
-        get_experiments_path() / "costs_imdb_wikipedia_enterprisetables" / "total_num_cells.json"
+        get_experiments_path() / "enterprise_costs" / "total_num_cells.json"
     )
 
 

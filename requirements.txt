@@ -52,3 +52,5 @@ chromadb==0.3.25
 ai-api-client-sdk==2.4.6
 generative-ai-hub-sdk[amazon]==4.3.1
 hana-ml==2.24.25040300
+
+lxml==6.0.0

@@ -13,25 +13,25 @@ understanding of LLMs for enterprise data engineering to support their adoption 
 
 ### Column Type Annotation
 
-We publish an adapted version of the [SportsTables](https://github.com/DHBWMosbachWI/SportsTables) dataset where we 
-introduce all enterprise data challenges (C1-C4) from the paper. The dataset consists of 100 tables annotated with 
-semantic column types. We publish five versions of it: one for each of the challenges C1-C4 and one that 
+We publish an adapted version of the [SportsTables](https://github.com/DHBWMosbachWI/SportsTables) dataset where we
+introduce all enterprise data challenges (C1-C4) from the paper. The dataset consists of 100 tables annotated with
+semantic column types. We publish five versions of it: one for each of the challenges C1-C4 and one that
 incorporates all challenges.
 
 Download: `datasets/adapted-sportstables-cta.zip`
 
 ### Enterprise Entity Matching (+errors, +multi-matches, +multiple tables)
 
-We publish our payment-to-invoice matching dataset in multiple versions, each consisting of the payment and invoice 
-tables and a table with the ground-truth matching information. There are versions with up to one or multiple errors per 
+We publish our payment-to-invoice matching dataset in multiple versions, each consisting of the payment and invoice
+tables and a table with the ground-truth matching information. There are versions with up to one or multiple errors per
 match, and versions with descriptive, non-descriptive, and multi-table schemas.
 
 Download: `datasets/payment-to-invoice-matching.zip`
 
 ### Enterprise Data Integration (Compound Task)
 
-We publish our enterprise data integration dataset, consisting of the input tables from Company A and Company B, the 
-ground truth output table of the data integration, and the ground truths of the intermediate steps (schema matching 
+We publish our enterprise data integration dataset, consisting of the input tables from Company A and Company B, the
+ground truth output table of the data integration, and the ground truths of the intermediate steps (schema matching
 and entity matching). The dataset has different sizes with versions between 50 and 300 customers.
 
 Download: `datasets/enterprise-data-integration.zip`
@@ -39,7 +39,7 @@ Download: `datasets/enterprise-data-integration.zip`
 ### Text-to-SIGNAL
 
 We publish our Text-to-SIGNAL dataset of NL-SIGNAL pairs, each including the natural language user request and the
-corresponding ground truth SIGNAL query. We also publish all SIGNAL queries generated in our experiments, as well as 
+corresponding ground truth SIGNAL query. We also publish all SIGNAL queries generated in our experiments, as well as
 our annotated error types for each query. Also included are the documentation and few-shot examples used in our prompts.
 
 Download: `datasets/text-to-signal.zip`
@@ -64,23 +64,28 @@ Experiments implemented in `experiments/enterprise_data_headers_types_cta`, task
 Experiment implemented in `experiments/enterprise_data_sparsity_width_cta`, task implemented in
 `tasks/column_type_annotation`.
 
+#### Exp. 4: Improvement strategies
+
+Experiment implemented in `experiments/enterprise_data_task_mode_ablations_cta`, task implemented in
+`tasks/column_type_annotation`.
+
 ### The Task Challenge
 
-#### Exp. 4 - 5: Increasing task complexity & Data errors amplify task complexity
+#### Exp. 5 - 6: Increasing task complexity & Data errors amplify task complexity
 
 Experiments implemented in `experiments/enterprise_tasks_pay_to_inv`, task implemented in `tasks/entity_matching`.
 
-#### Exp. 6 - 8: Error propagation in compound tasks & End-to-end task formulation & End-to-end scaling
+#### Exp. 7 - 9: Error propagation in compound tasks & End-to-end task formulation & End-to-end scaling
 
 Experiments implemented in `experiments/enterprise_tasks_compound`, task implemented in `tasks/compound_task`.
 
 ### The Knowledge Challenge
 
-#### Exp. 9: Text-to-SIGNAL
+#### Exp. 10: Text-to-SIGNAL
 
 Experiment implemented in `experiments/enterprise_knowledge_text2signal`, task implemented in `tasks/text2signal`.
 
-#### Exp. 10: Schema customizations
+#### Exp. 11: Schema customizations
 
 Experiment implemented in `experiments/enterprise_knowledge_schema_prediction`, task implemented in
 `tasks/schema_prediction`.
@@ -88,6 +93,10 @@ Experiment implemented in `experiments/enterprise_knowledge_schema_prediction`, 
 ### Costs
 
 Experiment implemented in `experiments/costs_imdb_wikipedia_enterprisetables`.
+
+### Other Experiments
+
+The other experiments (e.g., ablations) are also implemented in `experiments/`.
 
 ## Setup
 

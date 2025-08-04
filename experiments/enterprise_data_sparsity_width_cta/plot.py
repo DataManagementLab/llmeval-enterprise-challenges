@@ -7,8 +7,8 @@ from hydra.core.config_store import ConfigStore
 from matplotlib import pyplot as plt
 
 from llms4de.data import get_experiments_path
-from llms4de.plotting.colors import color, sort_idx, marker, gradient
-from llms4de.plotting.plot import save_plt, prepare_plt, SUBPLOTS_ADJUST, LEGEND_Y_LOW
+from llms4de.plotting.colors import color, sort_idx, marker, gradient, COLOR_GREY
+from llms4de.plotting.plot import save_plt, prepare_plt, SUBPLOTS_ADJUST, LEGEND_Y_LOW, FONT_SIZE
 from llms4de.plotting.texts import text
 
 logger = logging.getLogger(__name__)
@@ -39,6 +39,12 @@ def main(cfg: Config) -> None:
     subplots_adjust = SUBPLOTS_ADJUST.copy()
     subplots_adjust["right"] = 0.98
     figure.subplots_adjust(wspace=0.35, hspace=None, **subplots_adjust)
+
+    SAPCTA_SPARSITY = 0.43
+    for axis_ix in range(2):
+        axis[axis_ix].plot([SAPCTA_SPARSITY, SAPCTA_SPARSITY], [0, 1], lw=1.25, color=COLOR_GREY)
+    axis[0].text(SAPCTA_SPARSITY + 0.015, 0.9, "←SAPᴄᴛᴀ Sparsity", ha="left", color=COLOR_GREY, fontsize=FONT_SIZE - 1)
+    axis[1].text(SAPCTA_SPARSITY + 0.015, 0.09, "←SAPᴄᴛᴀ Sparsity", ha="left", color=COLOR_GREY, fontsize=FONT_SIZE - 1)
 
     sparsities = list(sorted(map(float, filter(is_float, res.columns))))
     for model, row in res.iterrows():
@@ -90,6 +96,13 @@ def main(cfg: Config) -> None:
     subplots_adjust = SUBPLOTS_ADJUST.copy()
     subplots_adjust["right"] = 0.98
     figure.subplots_adjust(wspace=0.35, hspace=None, **subplots_adjust)
+
+    # SAPcta average table width line
+    SAPCTA_WIDTH = 46
+    for axis_ix in range(2):
+        axis[axis_ix].plot([SAPCTA_WIDTH, SAPCTA_WIDTH], [0, 1], lw=1.25, color=COLOR_GREY)
+    axis[0].text(SAPCTA_WIDTH + 1.5, 0.9, "←SAPᴄᴛᴀ Width", ha="left", color=COLOR_GREY, fontsize=FONT_SIZE - 1)
+    axis[1].text(SAPCTA_WIDTH + 1.5, 0.09, "←SAPᴄᴛᴀ Width", ha="left", color=COLOR_GREY, fontsize=FONT_SIZE - 1)
 
     num_columnss = list(sorted(map(int, filter(is_int, res.columns))))
     for model, row in res.iterrows():
