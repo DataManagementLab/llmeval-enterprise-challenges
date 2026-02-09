@@ -1,13 +1,33 @@
 # Unveiling Challenges for LLMs in Enterprise Data Engineering
 
-**Large Language Models (LLMs) have demonstrated significant potential for automating data engineering tasks on tabular
-data, giving enterprises a valuable opportunity to reduce the high costs associated with manual data handling. However,
-the enterprise domain introduces unique challenges that existing LLM-based approaches for data engineering often
-overlook, such as large table sizes, more complex tasks, and the need for internal knowledge. To bridge these gaps, we
-identify key enterprise-specific challenges related to data, tasks, and background knowledge and conduct a comprehensive
-study of their impact on recent LLMs for data engineering. Our analysis reveals that LLMs face substantial limitations
-in real-world enterprise scenarios, resulting in significant accuracy drops. Our findings contribute to a systematic
-understanding of LLMs for enterprise data engineering to support their adoption in industry.**
+**Large Language Models (LLMs) promise to automate data engineering on tabular data, offering enterprises a valuable
+opportunity to cut the high costs of manual data handling. But the enterprise domain comes with unique challenges that
+existing LLM-based approaches for data engineering often overlook, such as large table sizes, more complex tasks, and
+the need for internal knowledge. To bridge these gaps, we identify key enterprise-specific challenges related to data,
+tasks, and background knowledge and extensively evaluate how they affect data engineering with LLMs. Our analysis
+reveals that LLMs face substantial limitations in real-world enterprise scenarios, with accuracy declining sharply. Our
+findings contribute to a systematic understanding of LLMs for enterprise data engineering to support their adoption in
+industry.**
+
+Please check out our [paper](https://www.vldb.org/pvldb/vol19/p196-bodensohn.pdf)
+or [extended technical report](https://arxiv.org/pdf/2504.10950) and cite our work:
+
+```bibtex
+@article{DBLP:journals/pvldb/BodensohnBVSB25,
+    author       = {Jan{-}Micha Bodensohn and
+                  Ulf Brackmann and
+                  Liane Vogel and
+                  Anupam Sanghi and
+                  Carsten Binnig},
+    title        = {Unveiling Challenges for LLMs in Enterprise Data Engineering},
+    journal      = {Proc. {VLDB} Endow.},
+    volume       = {19},
+    number       = {2},
+    pages        = {196--209},
+    year         = {2025},
+    url          = {https://www.vldb.org/pvldb/vol19/p196-bodensohn.pdf}
+}
+```
 
 ## Data Availability & Reproducibility
 
